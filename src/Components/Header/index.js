@@ -2,8 +2,12 @@ import {Link} from 'react-router-dom'
 import { Container } from './styles'
 import profile_icon from '../../Assets/profile_header.png'
 import favorites from '../../Assets/fav.png'
+import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
 const Header = () => {
+
+    const {sidebarShow} = useDynimicityContext();
+
     return (
         <Container>
             <div className="logo">
@@ -25,7 +29,10 @@ const Header = () => {
                     <img src={profile_icon} alt="profile_access"></img>
                 </div>
 
-                <div className="buttonFavorites">
+                <div className="buttonFavorites" onClick={() => {
+                        sidebarShow("0%") // enviando 0% como parâmetro para a função global
+                    }}>
+
                     <img src={favorites} alt="favorites_access"></img>
                 </div>
             </div>

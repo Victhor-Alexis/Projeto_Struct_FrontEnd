@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container } from './style'
 
-const Fotter = () => {
+const Footer = () => {
     return (
         <Container>
             <p>© 2021 Grupo 1, Inc</p>
@@ -11,4 +11,4 @@ const Fotter = () => {
     )
 }
 
-export default Fotter
+export default Footer
