@@ -6,7 +6,7 @@ import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
 const Header = () => {
 
-    const {sidebarShow} = useDynimicityContext();
+    const {sidebarShow, formShow} = useDynimicityContext();
 
     return (
         <Container>
@@ -25,14 +25,11 @@ const Header = () => {
             </nav>
 
             <div className="groupRight">
-                <div className="buttonProfile">
+                <div className="buttonProfile" onClick={() => formShow("none")}>
                     <img src={profile_icon} alt="profile_access"></img>
                 </div>
 
-                <div className="buttonFavorites" onClick={() => {
-                        sidebarShow("0%") // enviando 0% como parâmetro para a função global
-                    }}>
-
+                <div className="buttonFavorites" onClick={() => sidebarShow("0%")}>
                     <img src={favorites} alt="favorites_access"></img>
                 </div>
             </div>
