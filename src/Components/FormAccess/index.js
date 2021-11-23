@@ -8,16 +8,7 @@ const FormAccess = () => {
 
     const [formType, setFormType] = useState(["block", "none"])
 
-    const alterarForm = (formType) => {
-        //console.log(formType)
-        
-        if (formType[0] === "block") {
-            setFormType(["none", "block"])
-        }
-        else {
-            setFormType(["block", "none"])
-        }
-    }
+    const alterarForm = (formType) => (formType[0] === "block" ? setFormType(["none", "block"]) : setFormType(["block", "none"]))
 
     return (
         <Container>

@@ -9,15 +9,16 @@ const DynimicityProvider = ({children}) => {
     const [displaySidebar, setDisplaySidebar] = useState("none") 
 
     // displaySidebar é para os elementos dentro da sidebar se ocultarem enquanto ela não for aberta
+    // SizeDisplay é para a transição ser 'suave'.
     // Do modo como fiz, a função recebe o 'estado/visibilidade' atual do componente para depois alterá-lo
     const sidebarShow = (sizeSidebar) => { 
         if (sizeSidebar === "0%") {
-            setSizeSidebar("30%")
             setDisplaySidebar("block")
+            setTimeout(() => setSizeSidebar("30%"), 5)
         }
         else {
-            setSizeSidebar("0%")
             setDisplaySidebar("none")
+            setTimeout(() => setSizeSidebar("0%"), 5)
         }
     };
 

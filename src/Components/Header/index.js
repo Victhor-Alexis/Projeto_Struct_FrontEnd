@@ -3,10 +3,16 @@ import { Container } from './styles'
 import profile_icon from '../../Assets/profile_header.png'
 import favorites from '../../Assets/fav.png'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
+import icon_categoria from '../../Assets/icon_categoria.png'
 
 const Header = () => {
 
     const {sidebarShow, formShow} = useDynimicityContext();
+
+    /* 
+        As "li's" dentro da ul com a className submenu que serão repetidas em um map quando
+        a integração com a api for feita.
+    */
 
     return (
         <Container>
@@ -17,7 +23,31 @@ const Header = () => {
             <nav className="desktop-menu">
                 <Link to="/">Welcome</Link>
                 <span className="line"></span>
-                <Link to="/">Menu</Link>
+                <div className="menu">
+                    <p>Menu</p>
+
+                    <ul className="subMenu">
+                        <li>
+                            <Link to='/'>Categoria</Link>
+                            <img src={icon_categoria} alt="categoria_icon"></img>
+                        </li>
+
+                        <li>
+                            <Link to='/'>Categoria</Link>
+                            <img src={icon_categoria} alt="categoria_icon"></img>
+                        </li>
+
+                        <li>
+                            <Link to='/'>Categoria</Link>
+                            <img src={icon_categoria} alt="categoria_icon"></img>
+                        </li>
+
+                        <li>
+                            <Link to='/'>Categoria</Link>
+                            <img src={icon_categoria} alt="categoria_icon"></img>
+                        </li>
+                    </ul>
+                </div>
                 <span className="line"></span>
                 <Link to="/">Sobre</Link>
                 <span className="line"></span>

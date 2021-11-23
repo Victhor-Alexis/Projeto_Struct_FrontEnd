@@ -7,6 +7,12 @@ const Test = () => {
         <>
         <UserCard/>
         <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
+        <ProductCard/>
         </>
     )
 }

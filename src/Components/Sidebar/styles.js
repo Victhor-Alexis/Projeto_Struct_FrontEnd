@@ -7,10 +7,11 @@ export const Container = styled.div`
         position: absolute;
         right: 0;
         top: 0;
-        z-index: 1;
+        z-index: 3;
         transition: 0.4s;
         max-width: 37rem;
         height: 100%;
+        overflow-y: scroll;
 
         .header {
             width: 100%;
@@ -52,6 +53,14 @@ export const Container = styled.div`
                 text-align: center;
                 padding-top: 9%;
             }
+        }
+
+        .logado {
+            padding: 2rem 2%;
+            width: 95%;
+            text-align: center;
+            flex-wrap: wrap;
+            margin: 0 auto;
         }
     }
 `;

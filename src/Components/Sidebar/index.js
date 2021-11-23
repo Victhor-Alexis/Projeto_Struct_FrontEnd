@@ -1,16 +1,15 @@
 import { Container } from './styles'
 import {useDynimicityContext} from '../../Context/useDynimicityContext'
+import ProductCard from "../ProductCard"
 
 const Sidebar = () => {
 
     const {sizeSidebar, displaySidebar, sidebarShow} = useDynimicityContext();
-    
-    // A div dentro da div foi necessária para criar uma transição na aparição da tela
-    // Talvez haja uma forma melhor de fazer isso.
+
     return (
         <Container>
-            <div className="smoothTransition" style={{width: sizeSidebar}}>
-                <div className="displayItens" style={{display: displaySidebar}}>
+            <div className="smoothTransition" style={{width: sizeSidebar, display: displaySidebar}}>
+                <div className="wrapper">
                     <div className="header">
                         
                         <p>Adicionar aos favoritos</p>
@@ -26,16 +25,32 @@ const Sidebar = () => {
                         </div>
                     </div>
 
-                    <div className="deslogado" style={{display: "block"}}>
+                    <div className="deslogado" style={{display: "none"}}>
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
 
-                    <div className="logado" style={{display: "none"}}>
-                        <div className="boxAlert">
-                            <p>Logue-se para poder adicionar seus pratos favoritos!</p>
-                        </div>
+                    <div className="logado" style={{display: "flex"}}>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                     </div>
                 </div>
             </div>
