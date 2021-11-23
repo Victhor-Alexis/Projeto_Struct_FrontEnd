@@ -1,6 +1,5 @@
 import { Container } from "./styles"
 
-
 const  ProductCard = ({newHeight, newWidth, newFontSize}) => {
     
     const newHeightBorder = newHeight - 1;
