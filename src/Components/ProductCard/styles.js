@@ -1,14 +1,18 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-    width:17rem;
-    height: 16rem;
-    margin: 2rem;
-    border-radius: 25px;
+    max-width:17rem;
+    max-height: 16rem;
+    width: 100%;
+    height: 100vw;
+    margin: 2rem 4%;
     position: relative;
+    border-radius: 25px;
     text-align: center;
     background-size: cover;
     background-position: center;
+    box-sizing: border-box;
+
     :hover{
         cursor: pointer;
     }
@@ -23,14 +27,15 @@ export const Container = styled.div`
     .border{
         border-radius: 20px;
         background-color: transparent;
-        width: 14.5rem;
-        height: 13.5rem;
+        max-width: 14.5rem;
+        max-height: 13.5rem;
+        width: 85%;
+        height: 80vw;
         border: 12px solid white;
         position: absolute;
         left:50% ;
         top: 50% ;
         -ms-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
-
     }
 `
