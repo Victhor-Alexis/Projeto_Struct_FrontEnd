@@ -22,4 +22,22 @@ export const Container = styled.footer`
         color: white;
         font-size: 18px;
     }
+
+    /* * * * Media Queries * * * */
+
+    @media screen and (max-width: 950px) {
+        padding: 0 11%;
+    }
+
+    @media screen and (max-width: 550px) {
+        justify-content: center;
+
+        p {
+            font-size: 14px;
+        }
+
+        a {
+            display: none;
+        }
+    }
 `;

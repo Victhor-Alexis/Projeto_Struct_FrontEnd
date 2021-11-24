@@ -37,8 +37,8 @@ const DynimicityProvider = ({children}) => {
             é setado para 1 no mesmo momento do click*/
         }
         else {
-            setDisplayForm("none")
-            setTimeout(() => setFormOpacity(0), 5)
+            setFormOpacity(0)
+            setTimeout(() => setDisplayForm("none"), 400)
         }
     }
 
