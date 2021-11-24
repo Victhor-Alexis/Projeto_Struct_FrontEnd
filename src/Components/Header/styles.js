@@ -22,6 +22,10 @@ export const Container = styled.header`
         }
     }
 
+    nav.mobile-menu {
+        display: none;
+    }
+
     nav.desktop-menu {
         a, .menu {
             font-size: 18px;
