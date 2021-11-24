@@ -4,11 +4,13 @@ import profile_icon from '../../Assets/profile_header.png'
 import favorites from '../../Assets/fav.png'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import icon_categoria from '../../Assets/icon_categoria.png'
+
 import MobileMenu from '../MobileMenu'
 
 const Header = () => {
 
     const {sidebarShow, formShow, mobMenuShow} = useDynimicityContext();
+
     /* 
         As "li's" dentro da ul com a className submenu que serão repetidas em um map quando
         a integração com a api for feita.
@@ -16,7 +18,6 @@ const Header = () => {
 
     return (
         <Container>
-
             <nav className="mobile-menu">
                 <div className="menu-icon" onClick={() => mobMenuShow("none")}>
                     <div className="lineMenu"></div>

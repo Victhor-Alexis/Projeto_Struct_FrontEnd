@@ -113,7 +113,6 @@ export const Container = styled.header`
         }
     }
 
-
     /* * * * Media Queries * * * */
 
     @media screen and (max-width: 1124px) {
