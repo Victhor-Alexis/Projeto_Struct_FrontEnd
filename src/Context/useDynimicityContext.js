@@ -14,11 +14,11 @@ const DynimicityProvider = ({children}) => {
     const sidebarShow = (sizeSidebar) => { 
         if (sizeSidebar === "0%") {
             setDisplaySidebar("block")
-            setTimeout(() => setSizeSidebar("30%"), 5)
+            setSizeSidebar("30%")
         }
         else {
             setDisplaySidebar("none")
-            setTimeout(() => setSizeSidebar("0%"), 5)
+            setSizeSidebar("0%")
         }
     };
 
@@ -42,11 +42,29 @@ const DynimicityProvider = ({children}) => {
         }
     }
 
+    /* * * * */
+
+    /* Menu Mobile */
+
+    const [displayMobMenu, setDisplayMobMenu] = useState("none");
+    const [widthMobMenu, setWidthMobMenu] = useState("0%");
+
+    const mobMenuShow = () => {
+        if (displayMobMenu === "none") {
+            setDisplayMobMenu("block")
+            setTimeout( () => setWidthMobMenu("100%"), 1)
+        } else {
+            setDisplayMobMenu("none")
+            setTimeout( () => setWidthMobMenu("0%"), 1)
+        }
+    }
 
     /* * * * */
 
     return (
-        <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, formShow, displayForm, formOpacity}}>
+        <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, 
+                                            formShow, displayForm, formOpacity, 
+                                            mobMenuShow, displayMobMenu, widthMobMenu}}>
             {children}
         </DynimicityContext.Provider>
     );

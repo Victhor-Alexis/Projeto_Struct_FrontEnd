@@ -22,7 +22,7 @@ export const Container = styled.header`
         }
     }
 
-    nav {
+    nav.desktop-menu {
         a, .menu {
             font-size: 18px;
             color: white;
@@ -110,6 +110,87 @@ export const Container = styled.header`
     .buttonFavorites {
         img {
             width: 40px;
+        }
+    }
+
+    /* * * * Media Queries * * * */
+
+    @media screen and (max-width: 1124px) {
+        nav.desktop-menu {
+            display: none;
+        }
+
+        nav.mobile-menu {
+            display: block;
+            cursor: pointer;
+
+            .menu-icon:hover {
+                .lineMenu {
+                    width: 3.25rem;
+                }
+            }
+
+            .lineMenu {
+                width: 3.25rem;
+                border: 2px solid #fff;
+                margin: 0.5rem 0;
+                border-radius: 1px;
+                transition: 0.4s;
+            }
+
+            .lineMenu:nth-of-type(2) {
+                width: 1.25rem;
+            }
+
+            .lineMenu:nth-of-type(3) {
+                width: 2rem;
+            }
+
+            .content {
+                width: 100px;
+                height: 100px;
+                background-color: blue;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 520px) {
+        .logo {
+            h1 {
+                margin-top: 0.4rem;
+                font-size: 36px;
+            }
+        }
+
+        .groupRight {
+            div {
+                cursor: pointer;
+                display: inline-block;
+                margin: 0 0.32rem;
+                margin-top: 0.4rem;
+            }
+
+            .buttonFavorites {
+                img {
+                    width: 28px;
+                }
+            }
+
+            .buttonProfile {
+                img {
+                    width: 24px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 350px) {
+        nav.mobile-menu {
+            .lineMenu {
+                max-width: 2.9rem;
+            }
         }
     }
 `;

@@ -5,9 +5,11 @@ import favorites from '../../Assets/fav.png'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import icon_categoria from '../../Assets/icon_categoria.png'
 
+import MobileMenu from '../MobileMenu'
+
 const Header = () => {
 
-    const {sidebarShow, formShow} = useDynimicityContext();
+    const {sidebarShow, formShow, mobMenuShow} = useDynimicityContext();
 
     /* 
         As "li's" dentro da ul com a className submenu que serão repetidas em um map quando
@@ -16,6 +18,16 @@ const Header = () => {
 
     return (
         <Container>
+            <nav className="mobile-menu">
+                <div className="menu-icon" onClick={() => mobMenuShow("none")}>
+                    <div className="lineMenu"></div>
+                    <div className="lineMenu"></div>
+                    <div className="lineMenu"></div>
+                </div>
+
+                <MobileMenu/>
+            </nav>
+
             <div className="logo">
                 <h1>Padoca</h1>
             </div>

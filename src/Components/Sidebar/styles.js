@@ -10,6 +10,7 @@ export const Container = styled.div`
         z-index: 3;
         transition: 0.4s;
         max-width: 37rem;
+        width: 100%;
         height: 100%;
         overflow-y: scroll;
 
