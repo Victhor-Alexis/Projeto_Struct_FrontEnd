@@ -4,12 +4,29 @@ import profile_icon from '../../Assets/profile_header.png'
 import favorites from '../../Assets/fav.png'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import icon_categoria from '../../Assets/icon_categoria.png'
-
+import { useState } from "react"
+import { useEffect } from "react/cjs/react.development"
+import { api } from "../../services/api"
 import MobileMenu from '../MobileMenu'
 
 const Header = () => {
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     const {sidebarShow, formShow, mobMenuShow} = useDynimicityContext();
+
+    const [categories, setCategories] = useState([])
+
+    const fetchCategories = async () => {
+        const response = await api.get('categories/index')
+        console.log(response.data)
+        setCategories(response.data)
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
     /* 
         As "li's" dentro da ul com a className submenu que serão repetidas em um map quando
@@ -39,25 +56,12 @@ const Header = () => {
                     <p>Menu</p>
 
                     <ul className="subMenu">
-                        <li>
-                            <Link to='/'>Categoria</Link>
+                        {categories.map((category,key) => (
+                            <li>
+                            <Link to='/'>{capitalizeFirstLetter(category.name)}</Link>
                             <img src={icon_categoria} alt="categoria_icon"></img>
                         </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
+                        ))}
                     </ul>
                 </div>
                 <span className="line"></span>

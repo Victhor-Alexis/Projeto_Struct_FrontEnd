@@ -2,10 +2,24 @@ import { Link } from "react-router-dom"
 import { Container } from "./styles"
 import icon_categoria from '../../Assets/icon_categoria.png'
 import { useDynimicityContext } from "../../Context/useDynimicityContext"
+import { useState } from "react"
+import { useEffect } from "react/cjs/react.development"
+import { api } from "../../services/api"
 
 const MobileMenu = () => {
 
     const {mobMenuShow, displayMobMenu, widthMobMenu} = useDynimicityContext()
+    const [categories, setCategories] = useState([])
+
+    const fetchCategories = async () => {
+        const response = await api.get('categories/index')
+        console.log(response.data)
+        setCategories(response.data)
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
     return (
         <Container style={{display: displayMobMenu, width: widthMobMenu}}>
@@ -33,8 +47,8 @@ const MobileMenu = () => {
                 </li>
 
                 <ul className="subMenu">
-                        <li>
-                            <Link to='/'>Categoria</Link>
+                <li>
+                            <Link to='/'>CategoriaAAAAA</Link>
                             <img src={icon_categoria} alt="categoria_icon"></img>
                         </li>
 
@@ -55,7 +69,7 @@ const MobileMenu = () => {
                 </ul>             
 
                 <li><Link to="/">Sobre</Link></li>
-                <li><Link to="/">Contato</Link></li>
+                <li><Link to="/">Contatos</Link></li>
             </ul>
         </Container>
     )
