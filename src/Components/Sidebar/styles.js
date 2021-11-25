@@ -10,6 +10,7 @@ export const Container = styled.div`
         z-index: 3;
         transition: 0.4s;
         max-width: 37rem;
+        //min-width: 20rem;
         width: 100%;
         height: 100%;
         overflow-y: scroll;
@@ -19,23 +20,19 @@ export const Container = styled.div`
             height: 5.625rem;
             background-color: #161616;
             color: #F9F6F0;
-            text-align: center;
-            padding-top: 1.4rem;
+            padding: 1.4rem 5% 0 3%;
+            display: flex;
+            justify-content: space-between;
 
             p {
                font-size: 32px;
-               display: inline-block;
-               margin-left: 2.5rem;
+               margin-left: 2%;
             }
 
             .close {
-                display: inline-block;
+                margin-top: 0.05rem;
                 cursor: pointer;
                 vertical-align: top;
-
-                svg {
-                    margin: 0.1rem 0 0 3.5rem;
-                }
             }
         }
         
@@ -44,6 +41,8 @@ export const Container = styled.div`
             .boxAlert {
                 width: 80%;
                 height: 12vw;
+                min-height: 10rem;
+                min-width: 17rem;
                 max-height: 15.25rem;
                 border: 2px dashed #161616;
                 position: relative;
@@ -62,6 +61,70 @@ export const Container = styled.div`
             text-align: center;
             flex-wrap: wrap;
             margin: 0 auto;
+        }
+    }
+
+    /* * * * Media Queries * * * */
+
+    @media screen and (max-width: 1640px) {
+        .smoothTransition {
+            .header {
+
+                padding: 1.8rem 5% 0 3%;
+
+                p {
+                    font-size: 28px;
+                }
+
+                .close {
+                    
+                    svg {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+            }
+
+            .deslogado {
+                .boxAlert {
+                    font-size: 24px;
+                    padding: 9% 2% 0 2%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1440px) {
+        
+        .smoothTransition .header {
+            p {
+                font-size: 24px;
+            }
+
+            .close {
+                
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1220px) {
+        
+        .smoothTransition .header {
+            p {
+                font-size: 21px;
+            }
+
+            .close {
+                
+                svg {
+                    width: 21px;
+                    height: 21px;
+                }
+            }
         }
     }
 `;

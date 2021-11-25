@@ -57,10 +57,10 @@ const Header = () => {
 
                     <ul className="subMenu">
                         {categories.map((category,key) => (
-                            <li>
-                            <Link to='/'>{capitalizeFirstLetter(category.name)}</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
+                            <li key={key}>
+                                <Link to='/'>{capitalizeFirstLetter(category.name)}</Link>
+                                <img src={icon_categoria} alt="categoria_icon"></img>
+                            </li>
                         ))}
                     </ul>
                 </div>
