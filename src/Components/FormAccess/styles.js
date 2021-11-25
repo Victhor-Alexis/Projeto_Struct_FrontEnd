@@ -14,7 +14,7 @@ export const Container = styled.div`
         form {
             position: relative;
             background-color: rgb(249, 246, 240);
-            top: 50%;
+            top: 48%;
             left: 50%;
             transform: translate(-50%, -50%);
             max-width: 43.75rem;
@@ -23,6 +23,7 @@ export const Container = styled.div`
             height: 90vh;
             text-align: center;
             padding-top: 0.35rem;
+            min-width: 20rem;
             
             .close {
                 text-align: right;
@@ -49,7 +50,7 @@ export const Container = styled.div`
                 font-size: 32px;
                 font-weight: bold;
                 border: 3px solid #6F5B3E;
-                margin: 2.5rem 3%;
+                margin: 5% 3%;
                 background: none;
             }
             
@@ -70,7 +71,8 @@ export const Container = styled.div`
             
             .box-bottom {
                 width: 100%;
-                height: 17rem;
+                height: 26vh;
+                max-height: 17rem;
                 background-color: #6F5B3E;
                 padding: 3.4rem 0 2rem 0;
                 color: rgb(249, 246, 240);
@@ -110,6 +112,200 @@ export const Container = styled.div`
 
             input {
                 margin: 1.5rem 3%;
+            }
+        }
+    }
+
+    /* * * * Media Queries * * * */
+
+    @media screen and (max-height: 1048px) {
+        .wrapper {
+            form {
+                h1 {
+                    padding-top: 2vh;
+                }  
+
+                input:first-of-type {
+                    margin-top: 5vh;
+                }
+
+                input {
+                    margin: 2.5vh 3%;
+                }
+                
+                input:last-of-type {
+                    margin-top: 3.6vh;
+                }
+
+                .box-bottom {
+                    padding: 3rem 0 12rem 0;
+                }
+            }
+
+            form.cadastrar {
+                input:first-of-type {
+                    margin-top: 2.5vh;
+                }
+
+                input {
+                    margin: 2vh 3%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-height: 880px) {
+        .wrapper {
+            form {
+                h1 {
+                    font-size: 32px;
+                }  
+
+                input {
+                    height: 4.375rem;
+                    font-size: 24px;
+                }
+                
+                .box-bottom {
+                    padding: 4vh 0;
+
+                    h2 {
+                        font-size: 24px;
+                    }
+
+                    .button {
+                        padding: 1.2rem 0;
+                        font-size: 24px;
+                        margin-top: 1.2rem;
+                    }
+                }
+            }
+
+            .close {
+                svg {
+                    width: 26px;
+                    height: 26px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-height: 750px) {
+        .wrapper {
+            form {
+                h1 {
+                    padding-top: 0;
+                    font-size: 24px;
+                }  
+
+                input {
+                    height: 3.475rem;
+                    font-size: 18px;
+                }
+                
+                .box-bottom {
+                    padding: 4vh 0;
+
+                    h2 {
+                        font-size: 18px;
+                    }
+
+                    .button {
+                        padding: 1rem 0;
+                        font-size: 18px;
+                    }      
+                }
+            }
+        }
+    }
+
+    @media screen and (max-height: 630px) {
+        .wrapper {
+            form.cadastrar {
+                .box-bottom {
+                    height: 20vh;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-height: 550px) {
+        .wrapper {
+            form {
+                h1 {
+                    font-size: 18px;
+                }  
+
+                input {
+                    font-size: 14px;
+                    margin: 2vh 3%;
+                }
+                
+                .box-bottom {
+                    h2 {
+                        font-size: 14px;
+                    }
+
+                    .button {
+                        padding: 0.8rem 0;
+                        font-size: 14px;
+                    }      
+                }
+
+                .close {
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+
+            form.cadastrar {
+                .box-bottom {
+                    padding-top: 0;
+                    height: 18vh;
+                }
+            }
+        }
+    }
+    
+
+    @media screen and (max-width: 1440px) {
+        .wrapper {
+            form {
+                width: 40%;
+                
+                input {
+                    width: 85%;
+                }
+
+                input:last-of-type {
+                    width: 50%;
+                }
+
+                .box-bottom {
+                    .button {
+                        width: 50%;
+                    }      
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 1048px) {
+        .wrapper {
+            form {
+
+                h1 {
+                    font-size: 21px;
+                }
+
+                .close {
+                    svg {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
             }
         }
     }
