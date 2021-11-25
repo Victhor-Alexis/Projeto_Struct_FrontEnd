@@ -25,13 +25,13 @@ const Sidebar = () => {
                         </div>
                     </div>
 
-                    <div className="deslogado" style={{display: "flex"}}>
+                    <div className="deslogado" style={{display: "none"}}>
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
 
-                    <div className="logado" style={{display: "none"}}>
+                    <div className="logado" style={{display: "flex"}}>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>

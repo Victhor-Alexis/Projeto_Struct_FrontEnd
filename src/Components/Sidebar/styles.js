@@ -41,7 +41,6 @@ export const Container = styled.div`
             .boxAlert {
                 width: 80%;
                 height: 12vw;
-                min-height: 10rem;
                 min-width: 17rem;
                 max-height: 15.25rem;
                 border: 2px dashed #161616;
@@ -69,7 +68,6 @@ export const Container = styled.div`
     @media screen and (max-width: 1640px) {
         .smoothTransition {
             .header {
-
                 padding: 1.8rem 5% 0 3%;
 
                 p {
