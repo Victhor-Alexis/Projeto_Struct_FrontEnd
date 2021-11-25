@@ -4,11 +4,11 @@ import ProductCard from "../ProductCard"
 
 const Sidebar = () => {
 
-    const {sizeSidebar, displaySidebar, sidebarShow} = useDynimicityContext();
+    const {sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
 
     return (
         <Container>
-            <div className="smoothTransition" style={{width: sizeSidebar}}>
+            <div className="smoothTransition" style={{width: sizeSidebar, minWidth:minWidthSide}}>
                 <div className="wrapper" style={{display: displaySidebar}}>
                     <div className="header">
                         

@@ -7,6 +7,7 @@ const DynimicityProvider = ({children}) => {
 
     const [sizeSidebar, setSizeSidebar] = useState("0%")
     const [displaySidebar, setDisplaySidebar] = useState("none") 
+    const [minWidthSide, setMinWidthSide] = useState("0")
 
     // displaySidebar é para os elementos dentro da sidebar se ocultarem enquanto ela não for aberta
     // SizeDisplay é para a transição ser 'suave'.
@@ -15,10 +16,12 @@ const DynimicityProvider = ({children}) => {
         if (sizeSidebar === "0%") {
             setDisplaySidebar("block")
             setSizeSidebar("30%")
+            setMinWidthSide("20rem")
         }
         else {
             setDisplaySidebar("none")
             setSizeSidebar("0%")
+            setMinWidthSide("0")
         }
     };
 
@@ -62,7 +65,7 @@ const DynimicityProvider = ({children}) => {
     /* * * * */
 
     return (
-        <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, 
+        <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, minWidthSide, 
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu}}>
             {children}
