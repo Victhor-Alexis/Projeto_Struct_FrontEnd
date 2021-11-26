@@ -32,6 +32,7 @@ const Sidebar = () => {
                     </div>
 
                     <div className="logado" style={{display: "flex"}}>
+                        {/* <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
@@ -49,8 +50,7 @@ const Sidebar = () => {
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
                         <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
+                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/> */}
                     </div>
                 </div>
             </div>
