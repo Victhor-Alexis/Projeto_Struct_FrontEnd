@@ -7,7 +7,6 @@ import icon_categoria from '../../Assets/icon_categoria.png'
 import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
-import MobileMenu from '../MobileMenu'
 
 const Header = ({background, fontColor, position, bottom, profileBlack, 
                  hoverEffect, topSubmenu, colorSubmenu}) => {
