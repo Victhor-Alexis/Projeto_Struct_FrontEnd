@@ -20,7 +20,6 @@ const Header = () => {
 
     const fetchCategories = async () => {
         const response = await api.get('categories/index')
-        console.log(response.data)
         setCategories(response.data)
     }
 

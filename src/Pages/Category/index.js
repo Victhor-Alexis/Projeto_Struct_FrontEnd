@@ -2,28 +2,33 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { api } from '../../services/api'
 import Header from "../../Components/Header"
+import ProductCard from "../../Components/ProductCard"
 
 const Category = () => {
 
+    let { id } = useParams()
+    
+    const [products, setProducts] = useState([])
 
-    // Backend ainda n está pronto, os métodos da model de produtos n estão funcionando
-    const [categories, setCategories] = useState([]) 
-
-    const fetchByCategory = async () => {
-        const response = await api.get('categories/index')
+    const fetchProducts = async () => {
+        const response = await api.get(`/categories/my_products/${id}`)
         console.log(response.data)
-        const result = response.data.filter(item => item.name == 'salgado')
-        console.log(result)
-        setCategories(result)}
+        setProducts(response.data)}
     
 
     useEffect(() => {
-        fetchByCategory()
-        console.log(categories)
+        fetchProducts()
     }, [])
 
+
     return (
+        <>
+        {products.map((product,key) => (
+            // os produtos ainda n tem foto
+            <ProductCard product={product}/>
+        ))}
         <Header/>
+        </>
     )
 }
 

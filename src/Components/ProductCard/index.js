@@ -1,6 +1,6 @@
 import { Container } from "./styles"
 
-const  ProductCard = ({newHeight, newWidth, newFontSize}) => {
+const  ProductCard = ({newHeight, newWidth, newFontSize, product}) => {
     
     const newHeightBorder = newHeight - 1;
     const newWidthBorder = newWidth + 62;
@@ -9,8 +9,8 @@ const  ProductCard = ({newHeight, newWidth, newFontSize}) => {
         <Container style={{ 
             height: newHeight+"vw",
             width: newWidth+"%",
-            backgroundImage: `url("https://amopaocaseiro.com.br/wp-content/uploads/2020/01/pao-caseiro-para-iniciantes_02.jpg")`  }}>
-            <div className="text" style={{fontSize: newFontSize}}><span>Product Name</span></div>
+            backgroundImage: `url(${product.photo})`  }}>
+            <div className="text" style={{fontSize: newFontSize}}><span>{product.name}</span></div>
             <div className="border" style={{height: newHeightBorder+"vw", width: newWidthBorder+"%"}}></div>
         </Container>
     )
