@@ -162,14 +162,6 @@ export const Container = styled.header`
             .lineMenu:nth-of-type(3) {
                 width: 2rem;
             }
-
-            .content {
-                width: 100px;
-                height: 100px;
-                background-color: blue;
-                position: absolute;
-                left: 0;
-            }
         }
     }
 

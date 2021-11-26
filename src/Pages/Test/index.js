@@ -1,18 +1,12 @@
 import React from 'react'
 import ProductCard from '../../Components/ProductCard'
 import UserCard from '../../Components/UserCard'
+import MobileMenu from '../../Components/MobileMenu'
 
 const Test = () => {
     return (
         <>
-        <UserCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
-        <ProductCard/>
+        <MobileMenu/>
         </>
     )
 }
