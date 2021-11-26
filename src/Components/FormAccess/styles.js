@@ -24,6 +24,7 @@ export const Container = styled.div`
             text-align: center;
             padding-top: 0.35rem;
             min-width: 20rem;
+            box-shadow: 3px 3px 4px 1px #333333;
             
             .close {
                 text-align: right;
