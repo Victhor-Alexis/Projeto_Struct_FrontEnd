@@ -45,6 +45,10 @@ export const Container = styled.header`
             background-color: rgba(255,255,255, 0.18);
         }
 
+        .newHover:hover {
+            background-color: #EAE6DF;
+        }
+
         .menu {
             max-width: 5.3rem;
 
@@ -56,6 +60,7 @@ export const Container = styled.header`
                 top: 1.9rem;
                 left: -1.09rem;
                 background-color: rgba(22, 22, 22, 0.65);
+                box-shadow: 1px -1.5px 2px 0px black;
 
                 li {
                     display: flex;
@@ -77,6 +82,10 @@ export const Container = styled.header`
                     background-color: rgba(255,255,255, 0.18);
                 }
 
+                .newHover:hover {
+                    background-color: #EAE6DF;
+                }
+
                 img {
                     width: 32px;
                     height: 32px;
@@ -92,6 +101,10 @@ export const Container = styled.header`
             }
 
             background-color: rgb(255,255,255, 0.18);
+        }
+
+        .newHover:hover {
+            background-color: #EAE6DF;
         }
 
         .line {

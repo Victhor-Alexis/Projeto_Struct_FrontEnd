@@ -9,7 +9,9 @@ import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
 import MobileMenu from '../MobileMenu'
 
-const Header = () => {
+const Header = ({background, fontColor, position, bottom, profileBlack, 
+                 hoverEffect, topSubmenu, colorSubmenu}) => {
+
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
@@ -32,46 +34,61 @@ const Header = () => {
         a integração com a api for feita.
     */
 
+    /* Alteração do componente quando é chamado nas outras páginas -- fica sem background e com a font preta */
+
+    let realProfileIcon = profile_icon;
+
+    if (profileBlack !== undefined) { 
+        // alterando ícone do perfil, que ficará preto
+        realProfileIcon = profileBlack; 
+    }
+
+    /* * * * */
+
     return (
-        <Container>
+        <Container style={{
+            background: background,
+            position: position,
+            bottom: bottom,}}>
+
             <nav className="mobile-menu">
                 <div className="menu-icon" onClick={() => mobMenuShow("none")}>
-                    <div className="lineMenu"></div>
-                    <div className="lineMenu"></div>
-                    <div className="lineMenu"></div>
+                    <div className="lineMenu" style={{border: "2px solid "+fontColor}}></div>
+                    <div className="lineMenu" style={{border: "2px solid "+fontColor}}></div>
+                    <div className="lineMenu" style={{border: "2px solid "+fontColor}}></div>
                 </div>
 
                 <MobileMenu/>
             </nav>
 
             <div className="logo">
-                <h1>Padoca</h1>
+                <h1 style={{color: fontColor}}>Padoca</h1>
             </div>
 
             <nav className="desktop-menu">
-                <Link to="/">Welcome</Link>
-                <span className="line"></span>
-                <div className="menu">
-                    <p>Menu</p>
+                <Link to="/" style={{color: fontColor}} className={hoverEffect}>Welcome</Link>
+                <span className="line" style={{border: "1px solid "+fontColor}}></span>
+                <div className={"menu "+hoverEffect}>
+                    <p style={{color: fontColor}}>Menu</p>
 
-                    <ul className="subMenu">
+                    <ul className="subMenu" style={{top: topSubmenu, backgroundColor: colorSubmenu}}>
                         {categories.map((category,key) => (
-                            <li key={key}>
-                                <Link to='/'>{capitalizeFirstLetter(category.name)}</Link>
+                            <li className={hoverEffect} key={key}>
+                                <Link to='/' style={{color: fontColor}}>{capitalizeFirstLetter(category.name)}</Link>
                                 <img src={icon_categoria} alt="categoria_icon"></img>
                             </li>
                         ))}
                     </ul>
                 </div>
-                <span className="line"></span>
-                <Link to="/">Sobre</Link>
-                <span className="line"></span>
-                <Link to="/">Contato</Link>
+                <span className="line" style={{border: "1px solid "+fontColor}}></span>
+                <Link to="/" style={{color: fontColor}} className={hoverEffect}>Sobre</Link>
+                <span className="line" style={{border: "1px solid "+fontColor}}></span>
+                <Link to="/" style={{color: fontColor}} className={hoverEffect}>Contato</Link>
             </nav>
 
             <div className="groupRight">
                 <div className="buttonProfile" onClick={() => formShow("none")}>
-                    <img src={profile_icon} alt="profile_access"></img>
+                    <img src={realProfileIcon} alt="profile_access"></img>
                 </div>
 
                 <div className="buttonFavorites" onClick={() => sidebarShow("0%")}>
