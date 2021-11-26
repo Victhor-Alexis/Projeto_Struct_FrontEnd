@@ -4,11 +4,13 @@ import Header from '../../Components/Header'
 import Footer from '../../Components/Footer'
 import Sidebar from '../../Components/Sidebar'
 import FormAccess from '../../Components/FormAccess'
+import MobileMenu from '../../Components/MobileMenu'
 
 const Home = () => {
     return (
         <>
             <Header/>
+            <MobileMenu/>
             <Banner/>
             <Footer/>
             

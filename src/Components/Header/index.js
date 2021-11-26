@@ -58,7 +58,6 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
                     <div className="lineMenu" style={{border: "2px solid "+fontColor}}></div>
                 </div>
 
-                <MobileMenu/>
             </nav>
 
             <div className="logo">

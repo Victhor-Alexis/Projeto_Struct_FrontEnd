@@ -6,9 +6,10 @@ export const Container = styled.div`
     left: 0;
     height: 100vh;
     max-width: 25rem;
-    //width: 100%;
+    //width: 100;
     background-color: #F9F6F0;
     transition: 0.6s;
+    z-index: 3;
 
     .head {
         width: 100%;
@@ -19,6 +20,9 @@ export const Container = styled.div`
         
         .close {
             margin: 0 1.2rem;
+            svg {
+                cursor: pointer;
+            }
         }
     }
 
