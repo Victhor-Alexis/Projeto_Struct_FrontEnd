@@ -13,7 +13,7 @@ const Product = () => {
             <Sidebar/>
             <FormAccess/>
             <Header background="none" color="#161616" profileBlack={profile_black}
-                    position="fixed" bottom="0.7rem" fontColor="#161616"
+                    position="absolute" bottom="0.7rem" fontColor="#161616"
                     hoverEffect="newHover" topSubmenu="-18rem" colorSubmenu="rgba(249,246,240,0.9)"/>
             <MobileMenu/>
         </>
