@@ -8,13 +8,13 @@ export const Container = styled.div`
     max-height: 50rem;
     height: 80vh;
     //border: 1px solid #ccc;
-    margin: 5rem auto 0 auto;
+    margin: 0 auto;
     padding: 0 4%;
    
     .header {
         display: flex;
         justify-content: space-between;
-        padding: 1% 0 2% 0;
+        padding: 8% 0 2% 0;
 
         h1 {
             font-family: 'Qwigley', cursive;
@@ -37,5 +37,81 @@ export const Container = styled.div`
         text-align: center;
         font-size: 48px;
         font-family: 'Qwigley', cursive;
+    }
+
+    /* Media queries */
+
+    @media screen and (max-height: 900px) {
+        .header {
+            padding: 6% 0 2% 0;
+
+            h1 {
+                font-size: 36px;
+            }
+        }
+
+        p {
+            font-size: 36px;
+            margin-top: 3rem;
+        }
+    }
+
+    @media screen and (max-height: 768px) {
+        .header {
+            padding: 3% 0 2% 0;
+        }
+
+        p {
+            margin-top: 2rem;
+        }
+    }
+
+    //////////////////// Width
+
+    @media screen and (max-width: 1440px) {
+        width: 60%;
+    }
+
+    @media screen and (max-width: 1024px) {
+        height: 60vh;
+    }
+
+    @media screen and (max-width: 768px) {
+        .header {
+            padding: 10% 0 0 0;
+
+            h1 {
+                font-size: 24px;
+            }
+
+            img {
+                width: 24px;
+                margin-bottom: 1rem;
+            }
+        }
+
+        p {
+            font-size: 24px;
+        }
+    }
+
+    @media screen and (max-width: 580px) {
+        height: 55vh;
+
+        .header {
+            padding: 16% 0 0 0;
+
+            h1 {
+                font-size: 21px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 411px) {
+        width: 80%;
+
+        .header {
+            padding: 20% 0 0 0;
+        }
     }
 `;
