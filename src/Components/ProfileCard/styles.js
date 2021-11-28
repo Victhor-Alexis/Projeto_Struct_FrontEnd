@@ -8,6 +8,7 @@ export const Container = styled.div`
     text-align: center;
     display: inline-block;
     vertical-align: top;
+    padding: 1rem 0; 
 
     img {
         margin-top: 2rem;
@@ -29,5 +30,45 @@ export const Container = styled.div`
         }
     }
 
-    // 1580 - 60%
+    /* media queries */
+
+    @media screen and (max-width: 1580px) {
+        img {
+            width: 60%;
+        }
+    }
+
+    @media screen and (max-width: 1220px) {
+        img {
+            width: 55%;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        width: 90%;
+        height: auto;
+        border-bottom: 3px solid #161616;
+        margin: 0 auto;
+        display: block;
+        text-align: left;
+
+        img {
+            width: 30%;
+            min-width: 7.25rem;
+            min-height: 7.25rem;
+        }
+
+        .infoUser {
+            display: inline-block;
+            text-align: left;
+            vertical-align: top;
+            margin: 3.6rem 0 0 1.5rem;
+
+
+            h1 {
+                margin: 0.5rem 0;
+                font-size: 18px;
+            }
+        }
+    }
 `;

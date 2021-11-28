@@ -16,8 +16,7 @@ const Profile= () => {
                     colorSubmenu="rgba(249,246,240,0.9)"/>
             <ProfileCard/>
 
-            <ProductsWrapper> 
-            </ProductsWrapper>
+            <ProductsWrapper/> 
 
             <Sidebar/>
             <FormAccess/>
