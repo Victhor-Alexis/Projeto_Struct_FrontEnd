@@ -12,7 +12,6 @@ export const Container = styled.div`
     text-align: center;
     background-size: cover;
     background-position: center;
-    box-sizing: border-box;
 
     :hover{
         cursor: pointer;
