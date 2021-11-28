@@ -1,6 +1,4 @@
 import React from 'react'
-import ProductCard from '../../Components/ProductCard'
-import UserCard from '../../Components/UserCard'
 import MobileMenu from '../../Components/MobileMenu'
 
 const Test = () => {
