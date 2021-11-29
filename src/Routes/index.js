@@ -5,8 +5,13 @@ import Test from '../Pages/Test'
 import Category from '../Pages/Category'
 import Product from '../Pages/Product'
 import Profile from '../Pages/Profile'
+import AdminPanel from '../Pages/AdminPanel'
+import { useState } from 'react/cjs/react.development'
 
 const Routes = () => {
+    
+    const [isAdmin, setIsAdmin] = useState(true); // Receber isAdmin do banco
+
     return (
         <Switch>
             <Route exact path="/testes" component={Test}/>
@@ -14,6 +19,12 @@ const Routes = () => {
             <Route exact path="/category/:id" component={Category}/>
             <Route exact path="/product" component={Product}/>
             <Route exact path="/profile" component={Profile}/>
+
+            {
+                isAdmin && 
+                <Route exact path="/AdminPanel" component={AdminPanel}/>
+            }
+
             <Route path='*' component={Home}/>
         </Switch>
     )
