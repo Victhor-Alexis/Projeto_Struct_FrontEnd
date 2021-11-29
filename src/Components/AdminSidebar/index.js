@@ -1,3 +1,4 @@
+import ManageTable from "../ManageTable"
 import { Container } from "./styles"
 
 const AdminSidebar = () => {
@@ -8,6 +9,12 @@ const AdminSidebar = () => {
             <div className="adminInfo">
                 <h1>Nome</h1>
                 <h1 className="cargo">Administrador</h1>
+            </div>
+
+            <div className="management">
+                <ManageTable name={"Usuários"}/>
+                <ManageTable name={"Categorias"}/>
+                <ManageTable name={"Produtos"}/>
             </div>
         </Container>
     )
