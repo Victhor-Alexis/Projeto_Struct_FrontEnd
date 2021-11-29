@@ -4,7 +4,7 @@ export const Container = styled.header`
     width: 75%;
     height: 5rem;
     background-color: #C4AE78;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     padding: 0 3%;
 
