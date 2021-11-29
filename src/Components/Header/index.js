@@ -69,10 +69,10 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
                 <div className={"menu "+hoverEffect}>
                     <p style={{color: fontColor}}>Menu</p>
 
-                    <ul className="subMenu" style={{top: topSubmenu, backgroundColor: colorSubmenu}}>
+                    <ul className="subMenu" style={{top: topSubmenu, backgroundColor: colorSubmenu}}>                         
                         {categories.map((category,key) => (
                             <li className={hoverEffect} key={key}>
-                                <Link to='/' style={{color: fontColor}}>{capitalizeFirstLetter(category.name)}</Link>
+                                <Link to={`/category/${category.id}`} style={{color: fontColor}}>{capitalizeFirstLetter(category.name)}</Link>
                                 <img src={icon_categoria} alt="categoria_icon"></img>
                             </li>
                         ))}

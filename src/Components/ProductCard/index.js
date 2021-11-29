@@ -9,7 +9,7 @@ const  ProductCard = ({newHeight, newWidth, newFontSize, product}) => {
         <Container style={{ 
             height: newHeight+"vw",
             width: newWidth+"%",
-            backgroundImage: `url(${product.photo})`  }}>
+            backgroundImage: `url(${product.image})`  }}>
             <div className="text" style={{fontSize: newFontSize}}><span>{product.name}</span></div>
             <div className="border" style={{height: newHeightBorder+"vw", width: newWidthBorder+"%"}}></div>
         </Container>
