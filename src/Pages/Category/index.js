@@ -7,8 +7,10 @@ import Sidebar from "../../Components/Sidebar"
 import FormAccess from "../../Components/FormAccess"
 import profile_black from '../../Assets/profile_black.png'
 import MobileMenu from '../../Components/MobileMenu'
+import Board from "../../Components/CategoryPageBoard"
 
 const Category = () => {
+
 
     let { id } = useParams()
     
@@ -17,6 +19,7 @@ const Category = () => {
     const fetchProducts = async () => {
         const response = await api.get(`/categories/my_products/${id}`)
         console.log(response.data)
+        console.log('oi')
         setProducts(response.data)}
     
 
@@ -27,10 +30,7 @@ const Category = () => {
 
     return (
         <>
-            {products.map((product,key) => (
-                // os produtos ainda n tem foto
-                <ProductCard product={product}/>
-            ))}
+            <Board products={products}/>
         
             <Header background="none" color="#161616" profileBlack={profile_black}
                     position="absolute" bottom="0.7rem" fontColor="#161616"
