@@ -3,6 +3,10 @@ import { Container } from "./styles"
 const AdminHeader = () => {
     return (
         <Container>
+            <div className="sidebar">
+                    
+            </div>
+
             <div className="hideSide">
                 <svg width="33" height="28" viewBox="0 0 33 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line x1="0.015625" y1="26" x2="32.0156" y2="26" stroke="#F9F6F0" strokeWidth="4"/>

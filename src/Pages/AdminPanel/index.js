@@ -1,8 +1,12 @@
 import AdminHeader from "../../Components/AdminHeader";
+import AdminSidebar from "../../Components/AdminSidebar";
 
 const AdminPanel = () => {
     return (
-        <AdminHeader/>
+        <>
+            <AdminSidebar/>
+            <AdminHeader/>
+        </>
     );
 }
 
