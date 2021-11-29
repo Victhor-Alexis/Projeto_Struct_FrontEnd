@@ -8,6 +8,27 @@ export const Container = styled.header`
     display: inline-block;
     vertical-align: top;
     text-align: center;
+    overflow-y: scroll;
+
+    /* Editando scrollBar */
+
+    ::-webkit-scrollbar {
+        width: 0.6rem;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: #888; 
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+    }
+
+    /* * * * */
 
     img {
         margin-top: 3rem;
@@ -17,7 +38,12 @@ export const Container = styled.header`
 
     .adminInfo {
         h1 {
-            margin: 1rem 0;
+            color: white;
+            margin: 1.5rem 0;
         }
+    }
+
+    .management {
+        margin-top: 3rem;
     }
 `;
