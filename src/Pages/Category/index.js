@@ -19,7 +19,6 @@ const Category = () => {
     const fetchProducts = async () => {
         const response = await api.get(`/categories/my_products/${id}`)
         console.log(response.data)
-        console.log('oi')
         setProducts(response.data)}
     
 

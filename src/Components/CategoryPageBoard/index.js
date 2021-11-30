@@ -6,7 +6,6 @@ const Board = ({products}) => {
     return (
         <Container>
             {products.map((product,key) => (
-                // os produtos ainda n tem foto
                 <ProductCard product={product}/>
             ))}
         </Container>
