@@ -1,8 +1,9 @@
-import styled from "styled-components"
+import styled, { css } from 'styled-components';
+
 
 export const Container = styled.div`
-    min-height: 10rem;
-    min-width: 10rem;
+    min-height: 17rem;
+    min-width: 16rem;
     margin: 2rem 4rem;
     position: relative;
     border-radius: 25px;
