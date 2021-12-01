@@ -5,6 +5,7 @@ export const Container = styled.div`
     flex-wrap: wrap;
     width: 90%;
     box-sizing: border-box;
-    border: 1px solid blue; 
+    //border: 1px solid blue; 
     margin: 5rem auto;
+    padding-bottom: 8rem;
 `
