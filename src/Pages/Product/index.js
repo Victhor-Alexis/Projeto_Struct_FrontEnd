@@ -5,11 +5,30 @@ import FormAccess from '../../Components/FormAccess'
 import profile_black from '../../Assets/profile_black.png'
 import MobileMenu from '../../Components/MobileMenu'
 import ProductShow from '../../Components/ProductShow'
+import { useState } from "react"
+import { useEffect } from "react/cjs/react.development"
+import { api } from "../../services/api"
+import { useParams } from "react-router"
 
 const Product = () => {
+
+    let { id } = useParams()
+    
+    const [product, setProduct] = useState({})
+
+    const fetchProduct = async () => {
+        const response = await api.get(`/products/show/${id}`)
+        console.log(response.data)
+        setProduct(response.data)}
+    
+
+    useEffect(() => {
+        fetchProduct()
+    }, [])
+
     return (
         <>
-            <ProductShow/>
+            <ProductShow product={product}/>
             <Sidebar/>
             <FormAccess/>
             <Header background="none" color="#161616" profileBlack={profile_black}

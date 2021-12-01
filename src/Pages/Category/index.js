@@ -24,7 +24,7 @@ const Category = () => {
 
     useEffect(() => {
         fetchProducts()
-    }, [])
+    }, [id])
 
 
     return (
