@@ -1,10 +1,44 @@
-import { Container } from './styles'
-import {useDynimicityContext} from '../../Context/useDynimicityContext'
-import ProductCard from "../ProductCard"
+import { Container } from './styles';
+import {useDynimicityContext} from '../../Context/useDynimicityContext';
+import ProductCard from "../ProductCard";
+import { useLoginContext } from '../../Context/useLoginContext';
+import { useState, useEffect } from 'react';
+import {api} from '../../services/api';
 
 const Sidebar = () => {
 
     const {sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
+
+    // Temporario para ter um produto
+
+    const [produto, setProduto] = useState({})
+
+        const fetchProduct = async () => {
+        const response = await api.get(`products/show/1`)
+        console.log(response.data)
+        setProduto(response.data)}
+    
+
+    useEffect(() => {
+        fetchProduct()
+    }, [])
+
+
+
+    // Descomentar para acessar produtos do usuario logado
+    // const {user} = useLoginContext();
+    
+    // const [products, setProducts] = useState([])
+
+    // const fetchProducts = async () => {
+    //     const response = await api.get(`users/my_products/${user.id}`)
+    //     console.log(response.data)
+    //     setProducts(response.data)}
+    
+
+    // useEffect(() => {
+    //     fetchProducts()
+    // }, [])
 
     return (
         <Container>
@@ -32,25 +66,18 @@ const Sidebar = () => {
                     </div>
 
                     <div className="logado" style={{display: "flex"}}>
-                        {/* <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/> */}
+                        <div className="card-completo">
+                            <div className="delete-button" onClick={() => console.log("ok")}>
+                                <img src="../../Assets/deleteButton.png" alt="delete"></img>
+                            </div>
+                            <ProductCard newHeight={6.2} newWidth={24}
+                            newFontSize={"11px"} product={produto}/>
+                        </div>
+                        
+                        {/* {products.map((product,key) => (
+                             <ProductCard newHeight={6.2} newWidth={24}
+                              newFontSize={"11px"} product={product}/>
+                         ))} */}
                     </div>
                 </div>
             </div>
