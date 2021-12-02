@@ -4,7 +4,7 @@ export const Container = styled.div`
     .wrapper {
         width: 100%;
         height: 100%;
-        position: absolute;
+        position: fixed;
         top: 0;
         background-color: rgba(249, 246, 240, 0.7);
         z-index: 3;
