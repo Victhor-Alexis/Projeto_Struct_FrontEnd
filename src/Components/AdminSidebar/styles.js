@@ -4,11 +4,11 @@ export const Container = styled.header`
     width: 25%;
     max-width: 28rem;
     background-color: #6F5B3E;
+    position: fixed;
     height: 100%;
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    overflow-y: scroll;
 
     /* Editando scrollBar */
 
@@ -43,7 +43,21 @@ export const Container = styled.header`
         }
     }
 
-    .management {
-        margin-top: 3rem;
+    .manage {
+        margin-top: 2rem;
+
+        li {
+            background-color: #433624;
+            padding: 1.5rem 0;
+            margin: 0.2rem 0;
+            color: white;
+            font-size: 21px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        li:hover {
+            font-size: 20px;
+        }
     }
 `;
