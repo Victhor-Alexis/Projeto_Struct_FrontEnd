@@ -1,22 +1,16 @@
-import { useHistory } from "react-router";
 import { Container } from "./styles"
+import { useHistory } from "react-router";
 
-const  ProductCard = ({newHeight, newWidth, newFontSize, product}) => {
-    
-    const newHeightBorder = newHeight - 1;
-    const newWidthBorder = newWidth + 62;
-    console.log(product)
-
+const  ProductCard = ({newDimensions, product}) => {
     const history = useHistory()
 
     return (
-        <Container style={{ 
-            height: newHeight+"vw",
-            width: newWidth+"%",
+        <Container onClick={()=>history.push(`/product/${product.id}`)} style={{ 
+            height: newDimensions+"rem",
+            width: (newDimensions * 16/17)+"rem",
             backgroundImage: `url(http://localhost:3000${product.image_url})` }}>
-            <div onClick={()=>history.push(`/product/${product.id}`)} 
-            className="text" style={{fontSize: newFontSize}}><span>{product.name}</span></div>
-            <div className="border" style={{height: newHeightBorder+"vw", width: newWidthBorder+"%"}}></div>
+            <div className="text"><span>{product.name}</span></div>
+            <div className="border" style={{height: (newDimensions * 14.5/17)+"rem", width: (newDimensions * 13.5/16)+"rem", border: (newDimensions/17*12)+"px solid white"}}></div>
         </Container>
     )
 }
