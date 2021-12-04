@@ -87,6 +87,25 @@ export const Container = styled.div`
 
                 }
             }
+
+            .addfav-button{
+                position: relative;
+                height: 7rem;
+                width: 6.5rem;
+                border-radius: 30px;
+                margin: 4rem;
+
+                .add-icon{
+                    width: 7rem;
+                    object-fit: cover;
+                    border-radius: 30px;
+
+                    :hover{
+                        cursor: pointer;
+                    }
+
+                }
+            }
         }
     }
 

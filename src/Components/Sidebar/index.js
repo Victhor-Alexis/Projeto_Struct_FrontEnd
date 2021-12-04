@@ -5,6 +5,7 @@ import { useLoginContext } from '../../Context/useLoginContext';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
 import deleteButton from '../../Assets/deleteButton.png'
+import addFavorite from '../../Assets/addfavorite.png'
 
 const Sidebar = () => {
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
     // Descomentar para acessar produtos do usuario logado
     // const {user} = useLoginContext();
     
-    const user = {id: 2}
+    const user = {id: 3}
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
@@ -85,10 +86,12 @@ const Sidebar = () => {
                                 <div className="delete-button" onClick={() => findFavoriteId(product.id)}>
                                     <img className="icon" src={deleteButton} alt="delete"></img>
                                 </div>
-                                <ProductCard newHeight={6.2} newWidth={24}
-                                newFontSize={"11px"} product={product}/>
+                                <ProductCard newDimensions={7} product={product}/>
                               </div>
                          ))}
+                         <div className="addfav-button">
+                            <img className="add-icon" src={addFavorite} alt="adicionar favorito"></img>
+                         </div>
                     </div>
                 </div>
             </div>
