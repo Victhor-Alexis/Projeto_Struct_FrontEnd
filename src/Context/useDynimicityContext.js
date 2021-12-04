@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { api } from "../services/api"
 
 const DynimicityContext = createContext({});
 
@@ -64,10 +65,48 @@ const DynimicityProvider = ({children}) => {
 
     /* * * * */
 
+    /* Painel de controle */
+
+    // Selecionar a model:
+    const [optionModel, setOptionModel] = useState("");
+    const [modelItens, setModelItens] = useState([]);
+
+    const fetchModelItens = async (realOptionModel) => {
+        const response = await api.get(`${realOptionModel}/index`)
+        //console.log(response.data)
+        setModelItens(response.data)
+    }
+
+    const managementOption = (optionModel) => {
+        let realOptionModel;
+        setOptionModel(optionModel)
+        
+        switch(optionModel) {
+            case "Produtos":
+                realOptionModel = "products"
+            break;
+
+            case "Categorias":
+                realOptionModel = "categories"
+            break;
+
+            default:
+                realOptionModel = "user"
+            break;
+        }
+
+        fetchModelItens(realOptionModel);
+    } 
+
+    // Hide menu:
+
+    /* * * * */
+
     return (
         <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, minWidthSide, 
                                             formShow, displayForm, formOpacity, 
-                                            mobMenuShow, displayMobMenu, widthMobMenu}}>
+                                            mobMenuShow, displayMobMenu, widthMobMenu,
+                                            managementOption, optionModel, modelItens}}>
             {children}
         </DynimicityContext.Provider>
     );

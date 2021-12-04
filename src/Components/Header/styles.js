@@ -12,6 +12,7 @@ export const Container = styled.header`
     padding: 0 8%;
     position: relative;
     z-index: 1;
+    box-shadow: 0px -0.5px 3px 0px #333;
 
     .logo {
         h1 {

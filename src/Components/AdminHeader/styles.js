@@ -7,7 +7,9 @@ export const Container = styled.header`
     display: inline-flex;
     align-items: center;
     padding: 0 3%;
-
+    position: relative;
+    margin-left: 25%;
+    
     .hideSide {
         cursor: pointer;
     }
