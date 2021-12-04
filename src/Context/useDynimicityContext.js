@@ -98,6 +98,21 @@ const DynimicityProvider = ({children}) => {
         fetchModelItens(realOptionModel);
     } 
 
+    // AdmForm:
+    const [displayAdmForm, setDisplayAdmForm] = useState(["none", 0])
+    const [optionCrud, setOptionCrud] = useState("");
+
+    const admFormShow = (bool) => {
+        if (bool === false) {
+            setDisplayAdmForm(["block", 0])
+            setTimeout(() => setDisplayAdmForm(["block", 1]), 5)
+        }
+        else {
+            setDisplayAdmForm(["block", 0])
+            setTimeout(() => setDisplayAdmForm(["none", 0]), 100)
+        } 
+    }
+
     // Hide menu:
 
     /* * * * */
@@ -106,7 +121,9 @@ const DynimicityProvider = ({children}) => {
         <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, minWidthSide, 
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
-                                            managementOption, optionModel, modelItens}}>
+                                            managementOption, optionModel, modelItens,
+                                            setOptionCrud, optionCrud,
+                                            admFormShow, displayAdmForm}}>
             {children}
         </DynimicityContext.Provider>
     );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
-import { Container } from './styles'
+import { Container, Options } from './styles'
 import UserCard from '../UserCard'
 import ProductCard from '../ProductCard'
 import edit from '../../Assets/edit.png'
@@ -8,7 +8,7 @@ import delete_icon from '../../Assets/delete.png'
 
 const AdmRenderElements = ({model}) => {
 
-    const {optionModel} = useDynimicityContext();
+    const {optionModel, setOptionCrud, admFormShow} = useDynimicityContext();
     const [whatToRender, setWhatToRender] = useState([]);
 
     useEffect(() => {
@@ -25,24 +25,24 @@ const AdmRenderElements = ({model}) => {
     }, [optionModel]) 
     // Atualiza Quais elementos devem ser mostrados com base na mudança da opção da model
     
-    //Options pode ser componente
+    // Não esquecer de tranformar Options em componente
 
     return (
         <Container>
             <div className="userWrapper" style={{display: whatToRender[0]}}>
-                <div className="options">
-                    <img src={edit} alt="edit"/>
-                    <img src={delete_icon} alt="delete"/>
-                </div>
+                <Options>
+                    <img src={edit} alt="edit" onClick={() => {admFormShow(false); setOptionCrud("Editar")}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                </Options>
 
                 <UserCard name = {model.name} email = {model.email}/>
             </div>
 
             <div className="produtos" style={{display: whatToRender[1]}}>
-                <div className="options">
-                    <img src={edit} alt="edit"/>
-                    <img src={delete_icon} alt="delete"/>
-                </div>
+                <Options>
+                    <img src={edit} alt="edit" onClick={() => {{admFormShow(false); setOptionCrud("Editar")}}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                </Options>
 
                 <ProductCard newDimensions={8} product={model}/>
                 <table>
@@ -64,12 +64,23 @@ const AdmRenderElements = ({model}) => {
             </div>
 
             <div className="categorias" style={{display: whatToRender[2]}}>
-                <div className="options">
-                    <img src={edit} alt="edit"/>
-                    <img src={delete_icon} alt="delete"/>
-                </div>
+                <Options>
+                    <img src={edit} alt="edit" onClick={() => {admFormShow(false); setOptionCrud("Editar")}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                </Options>
                 {
-                    console.log(model.products)//model.categories.map((element, key) => (element.name+" "))
+                    <>
+                        <h1>{model.name}</h1>
+
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th>Produtos relacionados</th>
+                                </tr>
+                                {model.products !== undefined && model.products.map((element, key) => (<tr><td>{element.name}</td></tr>))}
+                            </tbody>
+                        </table>
+                    </>
                 }
             </div>
         </Container>
