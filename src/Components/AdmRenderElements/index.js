@@ -31,8 +31,8 @@ const AdmRenderElements = ({model}) => {
         <Container>
             <div className="userWrapper" style={{display: whatToRender[0]}}>
                 <Options>
-                    <img src={edit} alt="edit" onClick={() => {admFormShow(false); setOptionCrud("Editar")}}/>
-                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                    <img src={edit} alt="edit" onClick={() => {admFormShow(false, model.id, "Editar")}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false, model.id, "Deletar")}}/>
                 </Options>
 
                 <UserCard name = {model.name} email = {model.email}/>
@@ -40,8 +40,8 @@ const AdmRenderElements = ({model}) => {
 
             <div className="produtos" style={{display: whatToRender[1]}}>
                 <Options>
-                    <img src={edit} alt="edit" onClick={() => {{admFormShow(false); setOptionCrud("Editar")}}}/>
-                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                    <img src={edit} alt="edit" onClick={() => {admFormShow(false, model.id, "Editar");}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false, model.id, "Deletar");}}/>
                 </Options>
 
                 <ProductCard newDimensions={8} product={model}/>
@@ -65,8 +65,8 @@ const AdmRenderElements = ({model}) => {
 
             <div className="categorias" style={{display: whatToRender[2]}}>
                 <Options>
-                    <img src={edit} alt="edit" onClick={() => {admFormShow(false); setOptionCrud("Editar")}}/>
-                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false); setOptionCrud("Deletar")}}/>
+                    <img src={edit} alt="edit" onClick={() => {admFormShow(false, model.id, "Editar")}}/>
+                    <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false, model.id, "Deletar")}}/>
                 </Options>
                 {
                     <>
@@ -77,7 +77,7 @@ const AdmRenderElements = ({model}) => {
                                 <tr>
                                     <th>Produtos relacionados</th>
                                 </tr>
-                                {model.products !== undefined && model.products.map((element, key) => (<tr><td>{element.name}</td></tr>))}
+                                {model.products !== undefined && model.products.map((element, key) => (<tr key={key}><td>{element.name}</td></tr>))}
                             </tbody>
                         </table>
                     </>

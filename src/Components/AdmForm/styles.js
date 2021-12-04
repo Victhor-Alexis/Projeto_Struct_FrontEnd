@@ -11,7 +11,6 @@ export const Container = styled.form`
     position: fixed;
     z-index: 1;
     padding: 2%;
-    flex-wrap: wrap;
     justify-content: space-between;
     box-shadow: 1px 1px 2px 2px #ccc;
 
@@ -20,7 +19,7 @@ export const Container = styled.form`
         display: inline-block;
         width: 44%;
         margin-bottom: 1rem;
-        font-size: 24px;
+        font-size: 21px;
     }
 
     .close {
@@ -45,12 +44,14 @@ export const Container = styled.form`
 
         textarea {
             resize: none;
-            height: 7rem;
+            height: 3rem;
             width: 100%;
+            padding: 0.5rem;
         }
     }
 
     .submit {
+        margin-top: 0.5rem;
         padding: 0.35rem;
         cursor: pointer;
     }
