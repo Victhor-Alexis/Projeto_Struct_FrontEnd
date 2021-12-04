@@ -4,41 +4,47 @@ import ProductCard from "../ProductCard";
 import { useLoginContext } from '../../Context/useLoginContext';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
+import deleteButton from '../../Assets/deleteButton.png'
 
 const Sidebar = () => {
 
     const {sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
 
-    // Temporario para ter um produto
-
-    const [produto, setProduto] = useState({})
-
-        const fetchProduct = async () => {
-        const response = await api.get(`products/show/1`)
-        console.log(response.data)
-        setProduto(response.data)}
-    
-
-    useEffect(() => {
-        fetchProduct()
-    }, [])
-
-
-
     // Descomentar para acessar produtos do usuario logado
     // const {user} = useLoginContext();
     
-    // const [products, setProducts] = useState([])
+    const user = {id: 2}
+    const [products, setProducts] = useState([])
+    const [favorites, setFavorites] = useState([])
 
-    // const fetchProducts = async () => {
-    //     const response = await api.get(`users/my_products/${user.id}`)
-    //     console.log(response.data)
-    //     setProducts(response.data)}
+    const fetchFavorites = async () => {
+        const response = await api.get(`favorites/index`)
+        console.log(response.data)
+        setFavorites(response.data)}
+
+    const findFavoriteId = (productId) => {
+        favorites.forEach(favorite => {
+            if(productId == favorite.product_id && user.id == favorite.user_id){
+                let favoriteId = favorite.id
+                deleteFavorite(favoriteId)
+            }
+        });
+    }
+
+    const deleteFavorite = (favoriteId) => {
+        api.delete(`favorites/delete/${favoriteId}`)
+        fetchProducts()
+    }
+
+    const fetchProducts = async () => {
+        const response = await api.get(`user/my_favorites/${user.id}`)
+        setProducts(response.data)}
     
 
-    // useEffect(() => {
-    //     fetchProducts()
-    // }, [])
+    useEffect(() => {
+        fetchProducts()
+        fetchFavorites()
+    }, [])
 
     return (
         <Container>
@@ -66,18 +72,23 @@ const Sidebar = () => {
                     </div>
 
                     <div className="logado" style={{display: "flex"}}>
-                        <div className="card-completo">
+                        {/* <div className="card-completo">
                             <div className="delete-button" onClick={() => console.log("ok")}>
                                 <img src="../../Assets/deleteButton.png" alt="delete"></img>
                             </div>
                             <ProductCard newHeight={6.2} newWidth={24}
                             newFontSize={"11px"} product={produto}/>
-                        </div>
+                        </div> */}
                         
-                        {/* {products.map((product,key) => (
-                             <ProductCard newHeight={6.2} newWidth={24}
-                              newFontSize={"11px"} product={product}/>
-                         ))} */}
+                        {products.map((product,key) => (
+                            <div className="card-completo">
+                                <div className="delete-button" onClick={() => findFavoriteId(product.id)}>
+                                    <img className="icon" src={deleteButton} alt="delete"></img>
+                                </div>
+                                <ProductCard newHeight={6.2} newWidth={24}
+                                newFontSize={"11px"} product={product}/>
+                              </div>
+                         ))}
                     </div>
                 </div>
             </div>

@@ -22,7 +22,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
     const fetchCategories = async () => {
         const response = await api.get('categories/index')
         setCategories(response.data)
-        console.log(response.data)
+        
     }
 
     useEffect(() => {

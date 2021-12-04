@@ -70,11 +70,21 @@ export const Container = styled.div`
             
                 .delete-button{
                     position: relative;
-                    background-color: #cccccc;
-                    size: auto;
-                    left: 20% ;
-                    top: 5% ;
+                    background-color: none;
+                    left: 8% ;
+                    top: 15% ;
                     width: 30px;
+                    height: 30px;
+                    
+
+                    .icon{
+                        width: 30px;
+                    }
+
+                    :hover{
+                        cursor: pointer;
+                    }
+
                 }
             }
         }

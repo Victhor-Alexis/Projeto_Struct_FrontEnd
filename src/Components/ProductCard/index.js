@@ -4,7 +4,6 @@ const  ProductCard = ({newHeight, newWidth, newFontSize, product}) => {
     
     const newHeightBorder = newHeight - 1;
     const newWidthBorder = newWidth + 62;
-    console.log(product)
 
     return (
         <Container style={{ 
