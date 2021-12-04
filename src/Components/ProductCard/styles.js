@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 
 
 export const Container = styled.div`
-    min-height: 17rem;
-    min-width: 16rem;
+    height: 17rem;
+    width: 16rem;
     margin: 2rem 4rem;
     position: relative;
     border-radius: 25px;

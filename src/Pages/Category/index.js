@@ -24,15 +24,15 @@ const Category = () => {
 
     useEffect(() => {
         fetchProducts()
-    }, [])
+    }, [id])
 
 
     return (
         <>
             <Board products={products}/>
         
-            <Header background="none" color="#161616" profileBlack={profile_black}
-                    position="absolute" bottom="0.7rem" fontColor="#161616"
+            <Header background="#F9F6F0" color="#161616" profileBlack={profile_black}
+                    position="fixed" bottom="0" fontColor="#161616"
                     hoverEffect="newHover" topSubmenu="-18rem" colorSubmenu="rgba(249,246,240,0.9)"/>
             <MobileMenu/>
             <Sidebar/>

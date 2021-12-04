@@ -4,7 +4,7 @@ export const Container = styled.div`
     .smoothTransition {
         height: 20rem;
         background-color: #F9F6F0;
-        position: absolute;
+        position: fixed;
         right: 0;
         top: 0;
         z-index: 3;
