@@ -61,6 +61,32 @@ export const Container = styled.div`
             text-align: center;
             flex-wrap: wrap;
             margin: 0 auto;
+
+            .card-completo{
+
+                justify-content: center;
+                align-items: center;
+
+            
+                .delete-button{
+                    position: relative;
+                    background-color: none;
+                    left: 8% ;
+                    top: 15% ;
+                    width: 30px;
+                    height: 30px;
+                    
+
+                    .icon{
+                        width: 30px;
+                    }
+
+                    :hover{
+                        cursor: pointer;
+                    }
+
+                }
+            }
         }
     }
 
