@@ -4,7 +4,7 @@ import { Container } from './styles'
 
 const AdmAddButton = () => {
 
-    const {admFormShow, setOptionCrud} = useDynimicityContext();
+    const {admFormShow} = useDynimicityContext();
 
     return (
         <Container onClick={() => {admFormShow(false, -1, "Adicionar")}}>

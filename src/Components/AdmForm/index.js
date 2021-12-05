@@ -1,17 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
+import { api } from '../../services/api';
 import { Container } from './styles'
 
 const AdmForm = () => {
 
     const {optionCrud, optionModel, displayAdmForm, admFormShow, 
-           selectedItemId, modelForm, formKind} = useDynimicityContext();
+           selectedItemId, modelForm, formKind, realOptionModel} = useDynimicityContext();
+
+    const [name, setName] = useState("")
+
+    const fetchValues = async () => {
+        const response = await api.get(`${realOptionModel}/show/${selectedItemId}`)
+        //onsole.log(response.data)
+        setName(response.data.name)
+    }
+
+    useEffect(() => {
+        if (selectedItemId !== -1)
+            fetchValues()
+    }, [selectedItemId, optionCrud])
+
+    const selectSubmitType = () => {
+        if (optionCrud === 'Editar') {
+            updateModel()
+        }
+    }
+
+    const updateModel = async () => {
+        //console.log(realOptionModel, selectedItemId)
+        await api.patch(`${realOptionModel}/update/${selectedItemId}`, {
+            category: {
+                name
+            }
+        }).then((response) => {alert("Categoria editada")})
+    }
 
     // Existe a opção de fazer um form para cada opção do crud. Ia ficar mais organizado
     // que a forma que fiz aqui, mas teria mais componentes e trechos repetidos.
 
     return (
-        <Container style={{display: displayAdmForm[0], opacity: displayAdmForm[1]}}>
+        <Container style={{display: displayAdmForm[0], opacity: displayAdmForm[1]}} onSubmit={selectSubmitType}>
             <h1>{optionCrud} {optionModel.toLowerCase()}</h1>
 
             <div className="close" onClick={() => admFormShow(true, -1, "")}>
@@ -24,7 +53,7 @@ const AdmForm = () => {
             <div className="edit_or_add" style={{display: formKind[0]}}>
                 <div className="inputWrapper">
                     <h2>Nome:</h2>
-                    <input type="text"/>
+                    <input type="text" value={name} onChange={(e) => {setName(e.target.value)}}/>
                 </div>
 
                 <div className="inputWrapper" style={{display: modelForm[0]}}>

@@ -70,6 +70,7 @@ const DynimicityProvider = ({children}) => {
     // Selecionar a model:
     const [optionModel, setOptionModel] = useState("");
     const [modelItens, setModelItens] = useState([]);
+    const [realOptionModel, setRealOptionModel] = useState("");
 
     const fetchModelItens = async (realOptionModel) => {
         const response = await api.get(`${realOptionModel}/index`)
@@ -96,6 +97,7 @@ const DynimicityProvider = ({children}) => {
         }
 
         fetchModelItens(realOptionModel);
+        setRealOptionModel(realOptionModel)
     } 
 
     // AdmForm:
@@ -156,7 +158,8 @@ const DynimicityProvider = ({children}) => {
                                             managementOption, optionModel, modelItens,
                                             setOptionCrud, optionCrud,
                                             admFormShow, displayAdmForm,
-                                            selectedItemId, formKind, modelForm}}>
+                                            selectedItemId, formKind, modelForm,
+                                            realOptionModel}}>
             {children}
         </DynimicityContext.Provider>
     );
