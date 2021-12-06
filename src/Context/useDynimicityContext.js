@@ -4,6 +4,31 @@ import { api } from "../services/api"
 const DynimicityContext = createContext({});
 
 const DynimicityProvider = ({children}) => {
+
+     /* Add Favorite */ 
+
+     const [sizeFavbar, setSizeFavbar] = useState("0%")
+     const [displayFavbar, setDisplayFavbar] = useState("none") 
+     const [minWidthFav, setMinWidthFav] = useState("0")
+ 
+     // displaySidebar é para os elementos dentro da sidebar se ocultarem enquanto ela não for aberta
+     // SizeDisplay é para a transição ser 'suave'.
+     // Do modo como fiz, a função recebe o 'estado/visibilidade' atual do componente para depois alterá-lo
+     const favbarShow = (sizeFavbar) => { 
+         if (sizeFavbar === "0%") {
+             setDisplayFavbar("block")
+             setSizeFavbar("30%")
+             setMinWidthFav("20rem")
+         }
+         else {
+             setDisplayFavbar("none")
+             setSizeFavbar("0%")
+             setMinWidthFav("0")
+         }
+     };
+
+
+
     /* Sidebar */
 
     const [sizeSidebar, setSizeSidebar] = useState("0%")
@@ -104,6 +129,7 @@ const DynimicityProvider = ({children}) => {
 
     return (
         <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, minWidthSide, 
+                                            favbarShow, sizeFavbar, displayFavbar, minWidthFav,
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens}}>
