@@ -5,23 +5,24 @@ import { useLoginContext } from '../../Context/useLoginContext';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
 import deleteButton from '../../Assets/deleteButton.png'
-import addFavorite from '../../Assets/addfavorite.png'
+import addfavorite from '../../Assets/addfavorite.png'
 
 const Sidebar = () => {
 
-    const {sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
+    const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
+        sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
 
     // Descomentar para acessar produtos do usuario logado
     // const {user} = useLoginContext();
     
-    const user = {id: 3}
+    const user = {id: 2}
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
     const fetchFavorites = async () => {
         const response = await api.get(`favorites/index`)
-        console.log(response.data)
-        setFavorites(response.data)}
+        setFavorites(response.data)
+    }
 
     const findFavoriteId = (productId) => {
         favorites.forEach(favorite => {
@@ -40,6 +41,11 @@ const Sidebar = () => {
     const fetchProducts = async () => {
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
+
+    const showFavoriteBar = () => {
+        sidebarShow("30%")
+        favbarShow("0%")
+    }
     
 
     useEffect(() => {
@@ -87,10 +93,10 @@ const Sidebar = () => {
                                     <img className="icon" src={deleteButton} alt="delete"></img>
                                 </div>
                                 <ProductCard newDimensions={7} product={product}/>
-                              </div>
+                            </div>
                          ))}
-                         <div className="addfav-button">
-                            <img className="add-icon" src={addFavorite} alt="adicionar favorito"></img>
+                         <div className="addfav-button" onClick={() => showFavoriteBar()}>
+                            <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>
                     </div>
                 </div>
