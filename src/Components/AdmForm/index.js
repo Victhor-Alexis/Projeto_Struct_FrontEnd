@@ -16,6 +16,7 @@ const AdmForm = () => {
     const [image, setImage] = useState("")
 
     useEffect(() => {
+
         const fetchValues = async () => {
             const response = await api.get(`${realOptionModel}/show/${selectedItemId}`)
             //onsole.log(response.data)
@@ -37,6 +38,41 @@ const AdmForm = () => {
         if (optionCrud === 'Editar') {
             return updateModel;
         }
+        else if(optionCrud === 'Deletar') {
+            return deleteModel;
+        }
+        else if(optionCrud === 'Adicionar') {
+            return createModel;
+        }
+    }
+
+    const createModel = async (event) => {
+        //console.log(realOptionModel, selectedItemId)
+
+        let objectParameter = {};
+
+        switch (realOptionModel) {
+            case 'categories':
+                objectParameter = {
+                    category: {
+                        name
+                    }
+                }
+            break;
+
+            case 'products':
+                objectParameter = {
+                    product: {
+                        name,
+                        price,
+                        description
+                    }
+                }
+            break;
+        }
+
+        event.preventDefault();
+        await api.post(`${realOptionModel}/create`, objectParameter).then((response) => alert(name+" criadoo(a)!"))
     }
 
     const updateModel = async (event) => {
@@ -66,6 +102,12 @@ const AdmForm = () => {
 
         event.preventDefault();
         await api.patch(`${realOptionModel}/update/${selectedItemId}`, objectParameter).then((response) => alert(name+" editado(a)!"))
+    }
+
+    const deleteModel = async (event) => {
+        event.preventDefault();
+        console.log("entrou em deleteModel" + realOptionModel, selectedItemId)
+        await api.delete(`${realOptionModel}/delete/${selectedItemId}`).then((response) => alert(name+" deletado!"))
     }
 
     // Existe a opção de fazer um form para cada opção do crud. Ia ficar mais organizado
