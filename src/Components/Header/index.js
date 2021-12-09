@@ -7,15 +7,20 @@ import icon_categoria from '../../Assets/icon_categoria.png'
 import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
+import { useHistory } from 'react-router'
+import logoutImg from '../../Assets/exit.png'
 
 const Header = ({background, fontColor, position, bottom, profileBlack, 
                  hoverEffect, topSubmenu, colorSubmenu}) => {
+                     
 
     const capitalizeFirstLetter = (string) => {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const {sidebarShow, formShow, mobMenuShow, user} = useDynimicityContext();
+    const history = useHistory()
+
+    const {sidebarShow, formShow, mobMenuShow, user, logout} = useDynimicityContext();
 
     const [categories, setCategories] = useState([])
 
@@ -64,8 +69,6 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
                 <h1 style={{color: fontColor}}>Padoca</h1>
             </div>
 
-            <button onClick={() => console.log(user)}>ver user</button>
-
             <nav className="desktop-menu">
                 <Link to="/" style={{color: fontColor}} className={hoverEffect}>Welcome</Link>
                 <span className="line" style={{border: "1px solid "+fontColor}}></span>
@@ -88,13 +91,25 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
             </nav>
 
             <div className="groupRight">
+                {user?
+                <div className="buttonProfile" onClick={() => history.push(`/profile`)}>
+                    <img src={realProfileIcon} alt="profile_access"></img>
+                </div> 
+                :
                 <div className="buttonProfile" onClick={() => formShow("none")}>
                     <img src={realProfileIcon} alt="profile_access"></img>
-                </div>
+                </div>}
 
                 <div className="buttonFavorites" onClick={() => sidebarShow("0%")}>
                     <img src={favorites} alt="favorites_access"></img>
                 </div>
+                
+                {user?
+                <div className="buttonLogout" onClick={() => logout()}>
+                    <img className="logout-image" src={logoutImg} alt="logout"></img>
+                </div>
+                :
+                null}
             </div>
         </Container>
     )

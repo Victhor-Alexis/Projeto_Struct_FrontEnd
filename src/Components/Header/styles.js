@@ -129,7 +129,15 @@ export const Container = styled.header`
         img {
             width: 40px;
         }
+
+    .buttonLogout{
+        img {
+            width: 40px;
+            height: 40px;
+        }
     }
+    }
+
 
     /* * * * Media Queries * * * */
 

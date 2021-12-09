@@ -28,7 +28,7 @@ const DynimicityProvider = ({children}) => {
      };
 
 
-    /* login */
+    /* UserCRUD */
 
     const [user, setUser] = useState(undefined)
 
@@ -45,6 +45,10 @@ const DynimicityProvider = ({children}) => {
             setUser(undefined)
             alert("Invalid user")
         })
+    }
+
+    const logout = () => {
+        setUser(undefined)
     }
     
     /* Sidebar */
@@ -151,7 +155,7 @@ const DynimicityProvider = ({children}) => {
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
-                                            login,user}}>
+                                            login,user,logout}}>
             {children}
         </DynimicityContext.Provider>
     );
