@@ -4,16 +4,31 @@ import { Container } from './styles'
 
 const FormAccess = () => {
     
-    const {displayForm, formOpacity, formShow} = useDynimicityContext();
+    const {displayForm, formOpacity, formShow, login} = useDynimicityContext();
 
     const [formType, setFormType] = useState(["block", "none"])
 
     const alterarForm = (formType) => (formType[0] === "block" ? setFormType(["none", "block"]) : setFormType(["block", "none"]))
 
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const loginUser = (event) => {
+        event.preventDefault()
+        console.log(email, password+"ola")
+        const sentUser = {
+            user: {email: email,
+                password: password}
+            }
+        console.log(sentUser.user.email,sentUser.user.password+"oi")
+        login(sentUser.user)
+    }
+
     return (
         <Container>
             <div className="wrapper" style={{display: displayForm, opacity: formOpacity}}>
-                <form className="acessar" style={{display: formType[0]}}>
+                <form onSubmit={(event) => loginUser(event)} className="acessar" style={{display: formType[0]}}>
 
                     <div className="close">
                         <svg onClick={() => formShow("block")} width="34" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,8 +39,18 @@ const FormAccess = () => {
 
                     <h1>Acessar minha conta</h1>
 
-                    <input type="email" placeholder="E-mail"/>
-                    <input type="password" placeholder="Senha" autoComplete="on"/>
+                    <input 
+                        type="text" 
+                        placeholder="E-mail"
+                        value={email}
+                        onChange={(event) => {setEmail(event.target.value)}}
+                    />
+                    <input 
+                        autoComplete="on"
+                        type="password" 
+                        placeholder="Senha"
+                        value={password}
+                        onChange={(event) => {setPassword(event.target.value)}}/>
                     <input type="submit" value="Entrar"/>
 
                     <div className="box-bottom">

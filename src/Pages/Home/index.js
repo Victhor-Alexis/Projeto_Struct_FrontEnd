@@ -6,8 +6,10 @@ import Sidebar from '../../Components/Sidebar'
 import FormAccess from '../../Components/FormAccess'
 import MobileMenu from '../../Components/MobileMenu'
 import Favbar from '../../Components/AddFavoriteBar'
+import { useLoginContext } from '../../Context/useLoginContext'
 
 const Home = () => {
+
     return (
         <>
             <Header/>

@@ -15,7 +15,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-    const {sidebarShow, formShow, mobMenuShow} = useDynimicityContext();
+    const {sidebarShow, formShow, mobMenuShow, user} = useDynimicityContext();
 
     const [categories, setCategories] = useState([])
 
@@ -63,6 +63,8 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
             <div className="logo">
                 <h1 style={{color: fontColor}}>Padoca</h1>
             </div>
+
+            <button onClick={() => console.log(user)}>ver user</button>
 
             <nav className="desktop-menu">
                 <Link to="/" style={{color: fontColor}} className={hoverEffect}>Welcome</Link>

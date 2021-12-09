@@ -15,7 +15,7 @@ const Sidebar = () => {
     // Descomentar para acessar produtos do usuario logado
     // const {user} = useLoginContext();
     
-    const user = {id: 2}
+    const user = {id: 1}
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
@@ -39,8 +39,11 @@ const Sidebar = () => {
     }
 
     const fetchProducts = async () => {
+        setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
-        setProducts(response.data)}
+        setProducts(products => [...products, response.data])
+    }
+        
 
     const showFavoriteBar = () => {
         sidebarShow("30%")
@@ -87,14 +90,15 @@ const Sidebar = () => {
                             newFontSize={"11px"} product={produto}/>
                         </div> */}
                         
-                        {products.map((product,key) => (
-                            <div className="card-completo">
-                                <div className="delete-button" onClick={() => findFavoriteId(product.id)}>
-                                    <img className="icon" src={deleteButton} alt="delete"></img>
+                        {products.length >= 1 &&        
+                        products.map((product,key) => (
+                                <div className="card-completo">
+                                    <div className="delete-button" onClick={() => findFavoriteId(product.id)}>
+                                        <img className="icon" src={deleteButton} alt="delete"></img>
+                                    </div>
+                                    <ProductCard newDimensions={7} product={product}/>
                                 </div>
-                                <ProductCard newDimensions={7} product={product}/>
-                            </div>
-                         ))}
+                        ))}
                          <div className="addfav-button" onClick={() => showFavoriteBar()}>
                             <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>

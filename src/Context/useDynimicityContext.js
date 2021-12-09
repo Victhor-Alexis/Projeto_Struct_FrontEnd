@@ -28,7 +28,17 @@ const DynimicityProvider = ({children}) => {
      };
 
 
+    /* login */
 
+    const [user, setUser] = useState({})
+
+    const login = async (sentUser) =>{
+        console.log("dentro de login = " + sentUser.email, sentUser.password)
+        const response = await api.post(`user/login`, {sentUser})
+        alert('depois da requisicao')
+        setUser(response.data)
+    }
+    
     /* Sidebar */
 
     const [sizeSidebar, setSizeSidebar] = useState("0%")
@@ -132,7 +142,8 @@ const DynimicityProvider = ({children}) => {
                                             favbarShow, sizeFavbar, displayFavbar, minWidthFav,
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
-                                            managementOption, optionModel, modelItens}}>
+                                            managementOption, optionModel, modelItens,
+                                            login,user}}>
             {children}
         </DynimicityContext.Provider>
     );
