@@ -35,7 +35,7 @@ const AdmRenderElements = ({model}) => {
                     <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false, model.id, "Deletar")}}/>
                 </Options>
 
-                <UserCard name = {model.name} email = {model.email}/>
+                <UserCard user = {model}/>
             </div>
 
             <div className="produtos" style={{display: whatToRender[1]}}>
