@@ -88,7 +88,7 @@ export const Container = styled.header`
         }
     }
 
-    @media screen and (max-width: 530px) {
+    @media screen and (max-width: 535px) {
         .close {
             display: block;
             text-align: right;

@@ -147,7 +147,16 @@ const DynimicityProvider = ({children}) => {
         }
     }
 
-    // Hide menu:
+    // Hide Sidebar:
+    const [admSide, setAdmSide] = useState("inline-block");
+
+    const showAdmSidebar = (bool) => {
+        if (bool === false) {
+            setAdmSide("inline-block");
+        }
+        else 
+            setAdmSide("none");
+    }
 
     /* * * * */
 
@@ -159,7 +168,8 @@ const DynimicityProvider = ({children}) => {
                                             setOptionCrud, optionCrud,
                                             admFormShow, displayAdmForm,
                                             selectedItemId, formKind, modelForm,
-                                            realOptionModel}}>
+                                            realOptionModel,
+                                            showAdmSidebar, admSide}}>
             {children}
         </DynimicityContext.Provider>
     );
