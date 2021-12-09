@@ -9,6 +9,7 @@ export const Container = styled.header`
     display: inline-block;
     vertical-align: top;
     text-align: center;
+    z-index: 2;
 
     /* Editando scrollBar */
 
@@ -30,10 +31,18 @@ export const Container = styled.header`
 
     /* * * * */
 
+    .close {
+        display: none;
+    }
+
     img {
         margin-top: 3rem;
         width: 57%;
         height: 14vw;
+        min-width: 8rem;
+        min-height: 9rem;
+        max-width: 13rem;
+        max-height: 13rem;
     }
 
     .adminInfo {
@@ -58,6 +67,37 @@ export const Container = styled.header`
 
         li:hover {
             font-size: 20px;
+        }
+    }
+
+    /* Media queries */
+
+    @media screen and (max-width: 1200px) {
+        min-width: 16rem;
+
+        .adminInfo {
+            h1 {
+                font-size: 21px;
+            }
+        }
+
+        .manage {
+            li {
+                font-size: 18px;
+            }
+        }
+    }
+
+    @media screen and (max-width: 530px) {
+        .close {
+            display: block;
+            text-align: right;
+            padding-top: 1rem;
+            padding-right: 1rem;
+
+            svg {
+                cursor: pointer;
+            }
         }
     }
 `;

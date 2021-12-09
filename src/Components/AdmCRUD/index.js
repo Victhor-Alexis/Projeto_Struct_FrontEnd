@@ -9,7 +9,7 @@ const AdmCRUD = () => {
     const {optionModel, modelItens} = useDynimicityContext();
 
     return (
-        <Container>
+        <Container ju={optionModel}>
             <h1 className="title">{optionModel}</h1>
 
             <div className="show">
