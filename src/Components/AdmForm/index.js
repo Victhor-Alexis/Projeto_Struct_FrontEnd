@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import { api } from '../../services/api';
 import { Container } from './styles'
+import Select from 'react-select'
 
 const AdmForm = () => {
 
@@ -12,8 +13,37 @@ const AdmForm = () => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState(-1)
     const [categories, setCategories] = useState([])
+    const [AllCategories, setALLCategories] = useState([])
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
+    const [options, setOptions] = useState([])
+    const [multiops, setMultiops] = useState([])
+
+
+    const fetchALLCategories = async () => {
+        const response = await api.get('categories/index')
+        setALLCategories(response.data)
+        console.log(response.data)
+
+        const ops = AllCategories.map(item => {
+            return {
+                label: item.name,
+                value: item.id     
+            }
+        })
+
+        setOptions(ops)
+                
+    }
+
+    useEffect(() => {
+        fetchALLCategories()
+    }, [categories])
+
+    // const handleMultiChange = (ops) => {
+    //     setMultiops(ops)
+    //     console.log("multiops = " + multiops)
+    //   }
 
     useEffect(() => {
 
@@ -95,7 +125,8 @@ const AdmForm = () => {
                         name,
                         price,
                         description
-                    }
+                    },
+                    product_multiops: multiops
                 }
             break;
         }
@@ -138,6 +169,18 @@ const AdmForm = () => {
                 <div className="inputWrapper" style={{display: modelForm[0]}}>
                     <h2>Descrição:</h2>
                     <input type="text" value={description} onChange={(e) => {setDescription(e.target.value)}}/>
+                </div>
+
+                <div className="inputWrapper" style={{display: modelForm[0]}}>
+                    <h2>Categorias</h2>
+                    <Select
+                        className='search-line'
+                        placeholder='Search...'
+                        value = {multiops}
+                        options={options}
+                        onChange={(event) => setMultiops(event)}
+                        isMulti
+                    />
                 </div>
 
                 <div className="inputWrapper" style={{display: modelForm[1]}}>
