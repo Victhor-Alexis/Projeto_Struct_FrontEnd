@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services/api"
 
 const DynimicityContext = createContext({});
@@ -32,6 +33,13 @@ const DynimicityProvider = ({children}) => {
 
     const [user, setUser] = useState(undefined)
 
+     useEffect(() =>{
+        const retrieveduser = Cookies.get('padoca.user');
+        if(retrieveduser){
+            setUser(JSON.parse(retrieveduser))
+        }
+     }, [])
+
     const login = async (email , password) =>{
         const response = await api.post(`user/login`, {
             
@@ -40,6 +48,7 @@ const DynimicityProvider = ({children}) => {
             
         }).then((response) => {
             setUser(response.data)
+            Cookies.set('padoca.user', JSON.stringify(response.data))
             alert("Logged in")
         }).catch((error) => {
             setUser(undefined)
@@ -49,6 +58,7 @@ const DynimicityProvider = ({children}) => {
 
     const logout = () => {
         setUser(undefined)
+        Cookies.set('padoca.user', null)
     }
     
     /* Sidebar */
@@ -120,7 +130,6 @@ const DynimicityProvider = ({children}) => {
 
     const fetchModelItens = async (realOptionModel) => {
         const response = await api.get(`${realOptionModel}/index`)
-        //console.log(response.data)
         setModelItens(response.data)
     }
 

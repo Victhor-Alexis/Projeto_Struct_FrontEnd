@@ -68,7 +68,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
             <div className="logo">
                 <h1 style={{color: fontColor}}>Padoca</h1>
             </div>
-
+            
             <nav className="desktop-menu">
                 <Link to="/" style={{color: fontColor}} className={hoverEffect}>Welcome</Link>
                 <span className="line" style={{border: "1px solid "+fontColor}}></span>
