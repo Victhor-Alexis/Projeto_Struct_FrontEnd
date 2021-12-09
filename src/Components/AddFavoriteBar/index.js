@@ -12,10 +12,23 @@ const Favbar = () => {
     // Descomentar para acessar produtos do usuario logado
     // const {user} = useLoginContext();
     
-    const user = {id: 2}
+    const user = {id: 3}
     const [products, setProducts] = useState([])
     const [notfavorited, setNotfavorited] = useState([])
     const [allProducts, setAllProducts] = useState([])
+
+
+    const addFavorite = async (productId) => {
+        console.log(productId, user.id)
+        await api.post('favorites/create',{
+        favorite: {user_id: user.id,
+                  product_id: productId
+        }
+    }).then(() =>{
+        fetchProducts()
+        defineNonFavorited()
+    })
+    }
 
     const fetchProducts = async () => {
         const response = await api.get(`user/my_favorites/${user.id}`)
@@ -32,6 +45,12 @@ const Favbar = () => {
         setNotfavorited(result)
     }
 
+    const printLists = () => {
+        console.log(allProducts)
+        console.log(products)
+        console.log(notfavorited)
+    }
+
     useEffect(() => {
         fetchProducts()
         fetchAllProducts()
@@ -43,6 +62,7 @@ const Favbar = () => {
             <div className="smoothTransition" style={{width: sizeFavbar, minWidth:minWidthFav}}>
                 <div className="wrapper" style={{display: displayFavbar}}>
                     <div className="header">
+                        <span onClick={() => {console.log(printLists())}}>print</span>
                         <p>Escolha o favorito</p>
 
                         <div className="close" onClick={() => {
@@ -60,8 +80,8 @@ const Favbar = () => {
                         {notfavorited.map((product, key) => (
                             <div key={key} className="product-bar">
                                 <span>{product.name}</span>
-                                <div className="favorite-button" onClick={() => console.log()}>
-                                    <img className="fav-icon" src={favorites} alt="delete"></img>
+                                <div className="favorite-button" onClick={() => addFavorite(product.id)}>
+                                    <img className="fav-icon" src={favorites} alt="favorite item"></img>
                                 </div>
                             </div>
                             ))}
