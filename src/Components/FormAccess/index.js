@@ -16,13 +16,7 @@ const FormAccess = () => {
 
     const loginUser = (event) => {
         event.preventDefault()
-        console.log(email, password+"ola")
-        const sentUser = {
-            user: {email: email,
-                password: password}
-            }
-        console.log(sentUser.user.email,sentUser.user.password+"oi")
-        login(sentUser.user)
+        login(email ,password)
     }
 
     return (
@@ -40,7 +34,7 @@ const FormAccess = () => {
                     <h1>Acessar minha conta</h1>
 
                     <input 
-                        type="text" 
+                        type="email" 
                         placeholder="E-mail"
                         value={email}
                         onChange={(event) => {setEmail(event.target.value)}}

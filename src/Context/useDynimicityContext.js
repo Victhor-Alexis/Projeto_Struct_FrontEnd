@@ -30,13 +30,21 @@ const DynimicityProvider = ({children}) => {
 
     /* login */
 
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(undefined)
 
-    const login = async (sentUser) =>{
-        console.log("dentro de login = " + sentUser.email, sentUser.password)
-        const response = await api.post(`user/login`, {sentUser})
-        alert('depois da requisicao')
-        setUser(response.data)
+    const login = async (email , password) =>{
+        const response = await api.post(`user/login`, {
+            
+                email: email,
+                password, password
+            
+        }).then((response) => {
+            setUser(response.data)
+            alert("Logged in")
+        }).catch((error) => {
+            setUser(undefined)
+            alert("Invalid user")
+        })
     }
     
     /* Sidebar */
