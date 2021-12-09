@@ -7,12 +7,9 @@ import favorites from '../../Assets/fav.png'
 
 const Favbar = () => {
 
-    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav} = useDynimicityContext();
+    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, user} = useDynimicityContext();
 
-    // Descomentar para acessar produtos do usuario logado
-    // const {user} = useLoginContext();
-    
-    const user = {id: 3}
+
     const [products, setProducts] = useState([])
     const [notfavorited, setNotfavorited] = useState([])
     const [allProducts, setAllProducts] = useState([])
@@ -52,9 +49,10 @@ const Favbar = () => {
     }
 
     useEffect(() => {
-        fetchProducts()
-        fetchAllProducts()
-        defineNonFavorited()
+        if(user != undefined){
+            fetchProducts()
+            fetchAllProducts()
+            defineNonFavorited()}
     }, [])
 
     return (

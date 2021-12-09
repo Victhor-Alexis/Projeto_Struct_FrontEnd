@@ -10,12 +10,8 @@ import addfavorite from '../../Assets/addfavorite.png'
 const Sidebar = () => {
 
     const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
-        sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
-
-    // Descomentar para acessar produtos do usuario logado
-    // const {user} = useLoginContext();
+        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, user} = useDynimicityContext();
     
-    const user = {id: 1}
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
@@ -49,11 +45,12 @@ const Sidebar = () => {
         sidebarShow("30%")
         favbarShow("0%")
     }
-    
+
 
     useEffect(() => {
-        fetchProducts()
-        fetchFavorites()
+        if(user != undefined){
+            fetchProducts()
+            fetchFavorites()}
     }, [])
 
     return (
@@ -74,21 +71,9 @@ const Sidebar = () => {
                             </svg>
                         </div>
                     </div>
-
-                    <div className="deslogado" style={{display: "none"}}>
-                        <div className="boxAlert">
-                            <p>Logue-se para poder adicionar seus pratos favoritos!</p>
-                        </div>
-                    </div>
-
+                    
+                    {user? 
                     <div className="logado" style={{display: "flex"}}>
-                        {/* <div className="card-completo">
-                            <div className="delete-button" onClick={() => console.log("ok")}>
-                                <img src="../../Assets/deleteButton.png" alt="delete"></img>
-                            </div>
-                            <ProductCard newHeight={6.2} newWidth={24}
-                            newFontSize={"11px"} product={produto}/>
-                        </div> */}
                         
                         {products.length >= 1 &&        
                         products.map((product,key) => (
@@ -103,6 +88,14 @@ const Sidebar = () => {
                             <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>
                     </div>
+                    :
+                    <div className="deslogado" style={{display: "none"}}>
+                        <div className="boxAlert">
+                            <p>Logue-se para poder adicionar seus pratos favoritos!</p>
+                        </div>
+                    </div>
+                    }
+
                 </div>
             </div>
         </Container>
