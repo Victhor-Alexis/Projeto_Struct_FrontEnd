@@ -37,7 +37,7 @@ const Sidebar = () => {
     const fetchProducts = async () => {
         setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
-        setProducts(products => [...products, response.data])
+        setProducts(response.data)
     }
         
 

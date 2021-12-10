@@ -37,6 +37,8 @@ const DynimicityProvider = ({children}) => {
         const retrieveduser = Cookies.get('padoca.user');
         if(retrieveduser){
             setUser(JSON.parse(retrieveduser))
+            api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
+            api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email
         }
      }, [])
 
@@ -49,6 +51,8 @@ const DynimicityProvider = ({children}) => {
         }).then((response) => {
             setUser(response.data)
             Cookies.set('padoca.user', JSON.stringify(response.data))
+            api.defaults.headers.common['X-User-Token'] = response.data.authentication_token
+            api.defaults.headers.common['X-User-Email'] = response.data.email
             alert("Logged in")
         }).catch((error) => {
             setUser(undefined)
@@ -56,7 +60,7 @@ const DynimicityProvider = ({children}) => {
         })
     }
 
-    const logout = () => {
+    const logout = async (token) => {
         setUser(undefined)
         Cookies.set('padoca.user', null)
     }
