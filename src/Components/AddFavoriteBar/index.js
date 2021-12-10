@@ -1,37 +1,38 @@
 import { Container } from './styles';
 import {useDynimicityContext} from '../../Context/useDynimicityContext';
-import { useLoginContext } from '../../Context/useLoginContext';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
 import favorites from '../../Assets/fav.png'
 
 const Favbar = () => {
 
-    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, user} = useDynimicityContext();
+    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, user, sizeSidebar} = useDynimicityContext();
 
 
     const [products, setProducts] = useState([])
     const [notfavorited, setNotfavorited] = useState([])
     const [allProducts, setAllProducts] = useState([])
-
+    const favoriteUpdater = 0
 
     const addFavorite = async (productId) => {
         console.log(productId, user.id)
         await api.post('favorites/create',{
-        favorite: {user_id: user.id,
-                  product_id: productId
-        }
-    }).then(() =>{
+                user_id: user.id,
+                product_id: productId
+        }).then(() =>{
         fetchProducts()
         defineNonFavorited()
-    })
+        favoriteUpdater += 1
+        }).catch((event) => console.log('Error uploading favorite'))
     }
 
     const fetchProducts = async () => {
+        setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
     
     const fetchAllProducts = async () => {
+        setAllProducts([])
         const response = await api.get(`products/index`)
         setAllProducts(response.data)
     }
@@ -42,25 +43,21 @@ const Favbar = () => {
         setNotfavorited(result)
     }
 
-    const printLists = () => {
-        console.log(allProducts)
-        console.log(products)
-        console.log(notfavorited)
-    }
-
     useEffect(() => {
         if(user != undefined){
             fetchProducts()
             fetchAllProducts()
             defineNonFavorited()}
-    }, [])
+    }, [sizeFavbar,favoriteUpdater, sizeSidebar])
 
     return (
         <Container>
             <div className="smoothTransition" style={{width: sizeFavbar, minWidth:minWidthFav}}>
                 <div className="wrapper" style={{display: displayFavbar}}>
                     <div className="header">
-                        <span onClick={() => {console.log(printLists())}}>print</span>
+                        <button onClick={() => console.log(notfavorited)}>not favorited</button>
+                        <button onClick={() => console.log(allProducts)}>All products</button>
+                        <button onClick={() => console.log(products)}>Favorite products</button>
                         <p>Escolha o favorito</p>
 
                         <div className="close" onClick={() => {

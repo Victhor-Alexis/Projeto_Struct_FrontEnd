@@ -51,7 +51,7 @@ const Sidebar = () => {
         if(user != undefined){
             fetchProducts()
             fetchFavorites()}
-    }, [])
+    }, [sizeSidebar])
 
     return (
         <Container>
@@ -59,6 +59,8 @@ const Sidebar = () => {
                 <div className="wrapper" style={{display: displaySidebar}}>
                     <div className="header">
                         
+                        <button onClick={() => console.log(user)}>ver user</button>
+                        <button onClick={() => console.log(products)}>products</button>
                         <p>Adicionar aos favoritos</p>
 
                         <div className="close" onClick={() => {
@@ -71,30 +73,29 @@ const Sidebar = () => {
                             </svg>
                         </div>
                     </div>
-                    
-                    {user? 
+                
                     <div className="logado" style={{display: "flex"}}>
                         
-                        {products.length >= 1 &&        
-                        products.map((product,key) => (
-                                <div className="card-completo">
-                                    <div className="delete-button" onClick={() => findFavoriteId(product.id)}>
-                                        <img className="icon" src={deleteButton} alt="delete"></img>
-                                    </div>
-                                    <ProductCard newDimensions={7} product={product}/>
+                        {products.map(product => (
+                            <div className='card-completo'>
+                                <div className='delete-button' onClick={() => findFavoriteId(product.id)}>
+                                    <img className="icon" src={deleteButton} alt="delete"></img>
                                 </div>
+                                 <ProductCard newDimensions={7} product={product}/>
+                            </div>
                         ))}
+
                          <div className="addfav-button" onClick={() => showFavoriteBar()}>
                             <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>
                     </div>
-                    :
+                    
                     <div className="deslogado" style={{display: "none"}}>
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
-                    }
+                    
 
                 </div>
             </div>

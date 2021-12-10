@@ -106,7 +106,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
                 
                 {user?
                 <div className="buttonLogout" onClick={() => logout()}>
-                    <img className="logout-image" src={logoutImg} alt="logout"></img>
+                    <img src={logoutImg} alt="logout"></img>
                 </div>
                 :
                 null}
