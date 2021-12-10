@@ -1,7 +1,9 @@
 import React from 'react'
+import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import { Container } from './styles'
 
-const ProfileCard = ({user}) => {
+const ProfileCard = () => {
+    const {user} = useDynimicityContext()
     return (
         <Container>
             <img src="https://pfpmaker.com/_nuxt/img/profile-3-1.3e702c5.png" alt="profile"/>

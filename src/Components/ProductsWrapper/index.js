@@ -3,11 +3,11 @@ import { Container } from './styles'
 import { useState, useEffect } from 'react'
 import { api } from '../../services/api'
 import ProductCard from '../ProductCard'
+import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
-const ProductsWrapper = ({user}) => {
+const ProductsWrapper = () => {
 
-
-    const testList = [1,1,1,1,1,1,1,1,1]
+    const {refreshFav, user} = useDynimicityContext()
     const [favorites, setFavorites] = useState([])
     
     const fetchFavorites = async () => {
@@ -18,7 +18,7 @@ const ProductsWrapper = ({user}) => {
     
     useEffect(() => {
         fetchFavorites()
-    }, [])
+    }, [refreshFav])
 
     return (
         <Container>

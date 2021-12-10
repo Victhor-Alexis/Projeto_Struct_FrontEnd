@@ -11,14 +11,19 @@ const Sidebar = () => {
 
     const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
         sizeSidebar, displaySidebar, sidebarShow, minWidthSide, 
-        user, refreshFavorites} = useDynimicityContext();
+        user, refreshFav, refreshFun} = useDynimicityContext();
     
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
+    const onDelete = (productId) => {
+        findFavoriteId(productId)
+        refreshFun()
+    }
+
     const fetchFavorites = async () => {
         const response = await api.get(`favorites/index`)
-        setFavorites(response.data)
+        .then((response) => setFavorites(response.data))
     }
 
     const findFavoriteId = (productId) => {
@@ -32,11 +37,9 @@ const Sidebar = () => {
 
     const deleteFavorite = (favoriteId) => {
         api.delete(`favorites/delete/${favoriteId}`)
-        refreshFavorites = refreshFavorites +  1
     }
 
     const fetchProducts = async () => {
-        setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)
     }
@@ -52,7 +55,7 @@ const Sidebar = () => {
         if(user != undefined){
             fetchProducts()
             fetchFavorites()}
-    }, [sizeSidebar, refreshFavorites])
+    }, [sizeSidebar, refreshFav])
 
     return (
         <Container>
@@ -79,7 +82,7 @@ const Sidebar = () => {
                         
                         {products.map(product => (
                             <div className='card-completo'>
-                                <div className='delete-button' onClick={() => findFavoriteId(product.id)}>
+                                <div className='delete-button' onClick={() => onDelete(product.id)}>
                                     <img className="icon" src={deleteButton} alt="delete"></img>
                                 </div>
                                  <ProductCard newDimensions={7} product={product}/>

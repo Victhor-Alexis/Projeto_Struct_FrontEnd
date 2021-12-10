@@ -11,17 +11,15 @@ import ProductsWrapper from '../../Components/ProductsWrapper'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
 const Profile= () => {
-
-    const {user} = useDynimicityContext()
     
     return (
         <>
             <Header background="none" color="#161616" profileBlack={profile_black}
                     fontColor="#161616" hoverEffect="newHover" 
                     colorSubmenu="rgba(249,246,240,0.9)"/>
-            <ProfileCard user={user}/>
+            <ProfileCard/>
 
-            <ProductsWrapper user={user}/> 
+            <ProductsWrapper /> 
 
             <Sidebar/>
             <FavBar/>

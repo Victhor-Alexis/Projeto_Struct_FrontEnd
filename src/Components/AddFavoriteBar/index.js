@@ -7,33 +7,33 @@ import favorites from '../../Assets/fav.png'
 const Favbar = () => {
 
     const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, 
-        user, sizeSidebar, refreshFavorites} = useDynimicityContext();
+        user, sizeSidebar, refreshFav, refreshFun} = useDynimicityContext();
 
 
     const [products, setProducts] = useState([])
     const [notfavorited, setNotfavorited] = useState([])
     const [allProducts, setAllProducts] = useState([])
-    const favoriteUpdater = 0
 
+
+    const onAdd = async (productId) => {
+        await addFavorite(productId)
+        .then(() =>{refreshFun()})
+    }
     const addFavorite = async (productId) => {
         console.log(productId, user.id)
         await api.post('favorites/create',{
                 user_id: user.id,
                 product_id: productId
         }).then(() =>{  
-        refreshFavorites = refreshFavorites + 1 
         defineNonFavorited()
-        favoriteUpdater += 1
         }).catch((event) => console.log('Error uploading favorite'))
     }
 
     const fetchProducts = async () => {
-        setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
     
     const fetchAllProducts = async () => {
-        setAllProducts([])
         const response = await api.get(`products/index`)
         setAllProducts(response.data)
     }
@@ -49,7 +49,7 @@ const Favbar = () => {
             fetchProducts()
             fetchAllProducts()
             defineNonFavorited()}
-    }, [sizeFavbar,refreshFavorites, sizeSidebar])
+    }, [sizeFavbar,refreshFav, sizeSidebar])
 
     return (
         <Container>
@@ -76,7 +76,7 @@ const Favbar = () => {
                         {notfavorited.map((product, key) => (
                             <div key={key} className="product-bar">
                                 <span>{product.name}</span>
-                                <div className="favorite-button" onClick={() => addFavorite(product.id)}>
+                                <div className="favorite-button" onClick={() => onAdd(product.id)}>
                                     <img className="fav-icon" src={favorites} alt="favorite item"></img>
                                 </div>
                             </div>
