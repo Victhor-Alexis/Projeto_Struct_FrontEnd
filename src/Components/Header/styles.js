@@ -129,11 +129,11 @@ export const Container = styled.header`
         img {
             width: 40px;
         }
+    }
 
     .buttonLogout{
         img {
             width: 40px;
-            height: 40px;
         }
     }
     }
@@ -196,6 +196,11 @@ export const Container = styled.header`
                 }
             }
 
+            .buttonLogout {
+                img {
+                    width: 28px;
+                }
+            }
             .buttonProfile {
                 img {
                     width: 24px;
