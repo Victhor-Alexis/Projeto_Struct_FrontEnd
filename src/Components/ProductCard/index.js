@@ -1,6 +1,7 @@
 import { Container } from "./styles"
 import { useHistory } from "react-router";
 
+
 const  ProductCard = ({newDimensions, product}) => {
     const history = useHistory()
 

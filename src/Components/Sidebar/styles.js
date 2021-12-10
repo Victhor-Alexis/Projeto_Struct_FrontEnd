@@ -61,6 +61,51 @@ export const Container = styled.div`
             text-align: center;
             flex-wrap: wrap;
             margin: 0 auto;
+
+            .card-completo{
+
+                justify-content: center;
+                align-items: center;
+
+            
+                .delete-button{
+                    position: relative;
+                    background-color: none;
+                    left: 8% ;
+                    top: 15% ;
+                    width: 30px;
+                    height: 30px;
+                    
+
+                    .icon{
+                        width: 30px;
+                    }
+
+                    :hover{
+                        cursor: pointer;
+                    }
+
+                }
+            }
+
+            .addfav-button{
+                position: relative;
+                height: 7rem;
+                width: 6.5rem;
+                border-radius: 30px;
+                margin: 4rem;
+
+                .add-icon{
+                    width: 7rem;
+                    object-fit: cover;
+                    border-radius: 30px;
+
+                    :hover{
+                        cursor: pointer;
+                    }
+
+                }
+            }
         }
     }
 

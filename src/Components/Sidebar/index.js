@@ -1,10 +1,57 @@
-import { Container } from './styles'
-import {useDynimicityContext} from '../../Context/useDynimicityContext'
-import ProductCard from "../ProductCard"
+import { Container } from './styles';
+import {useDynimicityContext} from '../../Context/useDynimicityContext';
+import ProductCard from "../ProductCard";
+import { useLoginContext } from '../../Context/useLoginContext';
+import { useState, useEffect } from 'react';
+import {api} from '../../services/api';
+import deleteButton from '../../Assets/deleteButton.png'
+import addfavorite from '../../Assets/addfavorite.png'
 
 const Sidebar = () => {
 
-    const {sizeSidebar, displaySidebar, sidebarShow, minWidthSide} = useDynimicityContext();
+    const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
+        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, user} = useDynimicityContext();
+    
+    const [products, setProducts] = useState([])
+    const [favorites, setFavorites] = useState([])
+
+    const fetchFavorites = async () => {
+        const response = await api.get(`favorites/index`)
+        setFavorites(response.data)
+    }
+
+    const findFavoriteId = (productId) => {
+        favorites.forEach(favorite => {
+            if(productId == favorite.product_id && user.id == favorite.user_id){
+                let favoriteId = favorite.id
+                deleteFavorite(favoriteId)
+            }
+        });
+    }
+
+    const deleteFavorite = (favoriteId) => {
+        api.delete(`favorites/delete/${favoriteId}`)
+        fetchProducts()
+    }
+
+    const fetchProducts = async () => {
+        setProducts([])
+        const response = await api.get(`user/my_favorites/${user.id}`)
+        setProducts(products => [...products, response.data])
+    }
+        
+
+    const showFavoriteBar = () => {
+        sidebarShow("30%")
+        favbarShow("0%")
+    }
+
+
+    useEffect(() => {
+        if(user != undefined){
+            fetchProducts()
+            fetchFavorites()}
+    }, [sizeSidebar])
 
     return (
         <Container>
@@ -12,6 +59,8 @@ const Sidebar = () => {
                 <div className="wrapper" style={{display: displaySidebar}}>
                     <div className="header">
                         
+                        <button onClick={() => console.log(user)}>ver user</button>
+                        <button onClick={() => console.log(products)}>products</button>
                         <p>Adicionar aos favoritos</p>
 
                         <div className="close" onClick={() => {
@@ -24,34 +73,30 @@ const Sidebar = () => {
                             </svg>
                         </div>
                     </div>
+                
+                    <div className="logado" style={{display: "flex"}}>
+                        
+                        {products.map(product => (
+                            <div className='card-completo'>
+                                <div className='delete-button' onClick={() => findFavoriteId(product.id)}>
+                                    <img className="icon" src={deleteButton} alt="delete"></img>
+                                </div>
+                                 <ProductCard newDimensions={7} product={product}/>
+                            </div>
+                        ))}
 
+                         <div className="addfav-button" onClick={() => showFavoriteBar()}>
+                            <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
+                         </div>
+                    </div>
+                    
                     <div className="deslogado" style={{display: "none"}}>
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
+                    
 
-                    <div className="logado" style={{display: "flex"}}>
-                        {/* <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/>
-                        <ProductCard newHeight={6.2} newWidth={24} newFontSize={"11px"}/> */}
-                    </div>
                 </div>
             </div>
         </Container>

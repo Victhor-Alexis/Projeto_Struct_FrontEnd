@@ -1,9 +1,66 @@
-import { createContext, useContext, useState } from "react";
+import Cookies from "js-cookie";
+import { createContext, useContext, useEffect, useState } from "react";
 import { api } from "../services/api"
 
 const DynimicityContext = createContext({});
 
 const DynimicityProvider = ({children}) => {
+
+     /* Add Favorite */ 
+
+     const [sizeFavbar, setSizeFavbar] = useState("0%")
+     const [displayFavbar, setDisplayFavbar] = useState("none") 
+     const [minWidthFav, setMinWidthFav] = useState("0")
+ 
+     // displaySidebar é para os elementos dentro da sidebar se ocultarem enquanto ela não for aberta
+     // SizeDisplay é para a transição ser 'suave'.
+     // Do modo como fiz, a função recebe o 'estado/visibilidade' atual do componente para depois alterá-lo
+     const favbarShow = (sizeFavbar) => { 
+         if (sizeFavbar === "0%") {
+             setDisplayFavbar("block")
+             setSizeFavbar("30%")
+             setMinWidthFav("20rem")
+         }
+         else {
+             setDisplayFavbar("none")
+             setSizeFavbar("0%")
+             setMinWidthFav("0")
+         }
+     };
+
+
+    /* UserCRUD */
+
+    const [user, setUser] = useState(undefined)
+
+     useEffect(() =>{
+        const retrieveduser = Cookies.get('padoca.user');
+        if(retrieveduser){
+            setUser(JSON.parse(retrieveduser))
+        }
+     }, [])
+
+    const login = async (email , password) =>{
+        const response = await api.post(`user/login`, {
+            
+                email: email,
+                password, password
+            
+        }).then((response) => {
+            setUser(response.data)
+            Cookies.set('padoca.user', JSON.stringify(response.data))
+            alert("Logged in")
+        }).catch((error) => {
+            setUser(undefined)
+            alert("Invalid user")
+        })
+    }
+
+    const logout = () => {
+        setUser(undefined)
+        Cookies.set('padoca.user', null)
+    }
+    
     /* Sidebar */
 
     const [sizeSidebar, setSizeSidebar] = useState("0%")
@@ -74,7 +131,6 @@ const DynimicityProvider = ({children}) => {
 
     const fetchModelItens = async (realOptionModel) => {
         const response = await api.get(`${realOptionModel}/index`)
-        //console.log(response.data)
         setModelItens(response.data)
     }
 
@@ -162,14 +218,17 @@ const DynimicityProvider = ({children}) => {
 
     return (
         <DynimicityContext.Provider value={{sidebarShow, sizeSidebar, displaySidebar, minWidthSide, 
+                                            favbarShow, sizeFavbar, displayFavbar, minWidthFav,
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
+
                                             setOptionCrud, optionCrud,
                                             admFormShow, displayAdmForm,
                                             selectedItemId, formKind, modelForm,
                                             realOptionModel,
-                                            showAdmSidebar, admSide}}>
+                                            showAdmSidebar, admSide},login,user,logout}>
+
             {children}
         </DynimicityContext.Provider>
     );

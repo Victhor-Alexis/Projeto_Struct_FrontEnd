@@ -131,6 +131,14 @@ export const Container = styled.header`
         }
     }
 
+    .buttonLogout{
+        img {
+            width: 40px;
+        }
+    }
+    }
+
+
     /* * * * Media Queries * * * */
 
     @media screen and (max-width: 1124px) {
@@ -188,6 +196,11 @@ export const Container = styled.header`
                 }
             }
 
+            .buttonLogout {
+                img {
+                    width: 28px;
+                }
+            }
             .buttonProfile {
                 img {
                     width: 24px;
