@@ -8,6 +8,7 @@ const DynimicityProvider = ({children}) => {
 
      /* Add Favorite */ 
 
+     const refreshFavorites = 0
      const [sizeFavbar, setSizeFavbar] = useState("0%")
      const [displayFavbar, setDisplayFavbar] = useState("none") 
      const [minWidthFav, setMinWidthFav] = useState("0")
@@ -168,7 +169,7 @@ const DynimicityProvider = ({children}) => {
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
-                                            login,user,logout}}>
+                                            login,user,logout,refreshFavorites}}>
             {children}
         </DynimicityContext.Provider>
     );

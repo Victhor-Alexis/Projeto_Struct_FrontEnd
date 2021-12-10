@@ -10,7 +10,8 @@ import addfavorite from '../../Assets/addfavorite.png'
 const Sidebar = () => {
 
     const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
-        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, user} = useDynimicityContext();
+        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, 
+        user, refreshFavorites} = useDynimicityContext();
     
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
@@ -31,7 +32,7 @@ const Sidebar = () => {
 
     const deleteFavorite = (favoriteId) => {
         api.delete(`favorites/delete/${favoriteId}`)
-        fetchProducts()
+        refreshFavorites = refreshFavorites +  1
     }
 
     const fetchProducts = async () => {
@@ -51,7 +52,7 @@ const Sidebar = () => {
         if(user != undefined){
             fetchProducts()
             fetchFavorites()}
-    }, [sizeSidebar])
+    }, [sizeSidebar, refreshFavorites])
 
     return (
         <Container>

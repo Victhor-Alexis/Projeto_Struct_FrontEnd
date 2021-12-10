@@ -6,7 +6,8 @@ import favorites from '../../Assets/fav.png'
 
 const Favbar = () => {
 
-    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, user, sizeSidebar} = useDynimicityContext();
+    const {sizeFavbar, displayFavbar, favbarShow, minWidthFav, 
+        user, sizeSidebar, refreshFavorites} = useDynimicityContext();
 
 
     const [products, setProducts] = useState([])
@@ -19,8 +20,8 @@ const Favbar = () => {
         await api.post('favorites/create',{
                 user_id: user.id,
                 product_id: productId
-        }).then(() =>{
-        fetchProducts()
+        }).then(() =>{  
+        refreshFavorites = refreshFavorites + 1 
         defineNonFavorited()
         favoriteUpdater += 1
         }).catch((event) => console.log('Error uploading favorite'))
@@ -48,7 +49,7 @@ const Favbar = () => {
             fetchProducts()
             fetchAllProducts()
             defineNonFavorited()}
-    }, [sizeFavbar,favoriteUpdater, sizeSidebar])
+    }, [sizeFavbar,refreshFavorites, sizeSidebar])
 
     return (
         <Container>
