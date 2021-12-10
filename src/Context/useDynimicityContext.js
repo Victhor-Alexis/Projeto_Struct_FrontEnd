@@ -222,12 +222,11 @@ const DynimicityProvider = ({children}) => {
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
-
                                             setOptionCrud, optionCrud,
                                             admFormShow, displayAdmForm,
                                             selectedItemId, formKind, modelForm,
-                                            realOptionModel,
-                                            showAdmSidebar, admSide},login,user,logout}>
+                                            realOptionModel, showAdmSidebar, admSide,
+                                            login, user, logout}}>
 
             {children}
         </DynimicityContext.Provider>
