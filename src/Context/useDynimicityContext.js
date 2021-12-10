@@ -127,6 +127,7 @@ const DynimicityProvider = ({children}) => {
     // Selecionar a model:
     const [optionModel, setOptionModel] = useState("");
     const [modelItens, setModelItens] = useState([]);
+    const [realOptionModel, setRealOptionModel] = useState("");
 
     const fetchModelItens = async (realOptionModel) => {
         const response = await api.get(`${realOptionModel}/index`)
@@ -152,9 +153,66 @@ const DynimicityProvider = ({children}) => {
         }
 
         fetchModelItens(realOptionModel);
+        setRealOptionModel(realOptionModel)
     } 
 
-    // Hide menu:
+    // AdmForm:
+    const [displayAdmForm, setDisplayAdmForm] = useState(["none", 0])
+    const [optionCrud, setOptionCrud] = useState("");
+    const [selectedItemId, setSelectedItemId] = useState(-1);
+    const [formKind, setFormKind] = useState(["none", "none"]); // Add/edit e delete
+    const [modelForm, setModelForm] = useState(["none", "none", "none"]); // Respectivamente, inputs para product, user e o input imagem que aparece nos dois
+    // Não precisa para as categorias porque o único input para a categoria é o nome, 
+    // que também é atributo das outras dois models
+
+    const admFormShow = (bool, index, optionCrud) => {
+        if (bool === false) {
+            setDisplayAdmForm(["block", 0])
+            setTimeout(() => setDisplayAdmForm(["block", 1]), 5)
+        }
+        else {
+            setDisplayAdmForm(["block", 0])
+            setTimeout(() => setDisplayAdmForm(["none", 0]), 100)
+        }
+        
+        setSelectedItemId(index)
+        setOptionCrud(optionCrud)
+
+        /* Determinando a quantidade e o nome dos inputs com base na model e na opção do crud escolhida*/
+
+        if (optionCrud === "Adicionar" || optionCrud === "Editar") {
+            setFormKind(["block", "none"])
+        } 
+        else {
+            setFormKind(["none", "block"])
+        }
+
+        switch(optionModel) {
+            case "Produtos":
+                setModelForm(["block", "none", "block"])
+            break;
+
+            case "Usuários":
+                setModelForm(["none", "block", "block"])
+            break;
+
+            default:
+                setModelForm(["none", "none", "none"])
+                // Caso o form seja para as categorias, só aparece o nome
+            break;
+        }
+    }
+
+    // Hide Sidebar:
+    const [admSide, setAdmSide] = useState("inline-block");
+
+    const showAdmSidebar = (bool) => {
+        if (bool === false) {
+            setAdmSide("inline-block");
+        }
+        else 
+            setAdmSide("none");
+    }
 
     /* * * * */
 
@@ -164,7 +222,13 @@ const DynimicityProvider = ({children}) => {
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
-                                            login,user,logout}}>
+
+                                            setOptionCrud, optionCrud,
+                                            admFormShow, displayAdmForm,
+                                            selectedItemId, formKind, modelForm,
+                                            realOptionModel,
+                                            showAdmSidebar, admSide},login,user,logout}>
+
             {children}
         </DynimicityContext.Provider>
     );

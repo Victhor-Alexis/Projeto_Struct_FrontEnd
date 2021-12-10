@@ -8,6 +8,8 @@ export const Container = styled.div`
     position: absolute;
     left: 30%;
     top: 17%;
+    padding-bottom: 10%;
+    display: ${props => props.ju != "" ? "block" : "none"};
 
     h1 {
         width: 100%;
@@ -22,29 +24,41 @@ export const Container = styled.div`
         justify-content: space-around;
     }
 
-    .options {
-        width: 70%;
-        display: flex;
-        justify-content: space-between;
+    /* Media queries */
+
+    @media screen and (min-width: 1800px) {
+        left: 34rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+        margin-left: 1rem;
+        position: relative;
+        top: 6%;
+        left: 30%;
+    }
+
+    @media screen and (max-width: 900px) {
+        margin-left: 2rem;
+    }
+
+    @media screen and (max-width: 770px) {
+        max-width: 20rem;
+        left: 40%;
+
+        h1 {
+            text-align: center;
+            padding: 2rem 0 3rem 0;
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        max-width: 16rem;
+        left: 45%;
+    }
+
+    @media screen and (max-width: 535px) {
+        left: 0;
         margin: 0 auto;
-        padding-bottom: 1rem;
-
-        img {
-            width: 24px;
-            cursor: pointer;
-        }
-
-        @keyframes rotate {
-                0%   {top: 0}
-                50%  {top: -0.4rem}
-                100% {top: 0}
-            }
-
-        img:hover {
-            position: relative;
-            animation-name: rotate;
-            animation-duration: 1.1s;
-            animation-iteration-count: infinite;
-        }
+        min-width: 90%;
     }
 `;
