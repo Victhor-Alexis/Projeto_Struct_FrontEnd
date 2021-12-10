@@ -22,13 +22,22 @@ const FormAccess = () => {
 
         console.log(name)
 
+        if (name.length != 0 && password.length >= 6 && email.length !=0){
+
         await api.post('user/create', {
             user: {
                 name,
                 email,
-                password
+                password,
+                is_admin: false
             }
         }).then((response) => alert('criado(a)!'))
+        }
+
+        else {
+            alert("atenção: a senha deve ter no mínimo 6 caracteres e os outros campos não podem ser vazios")
+        }
+
     }
 
     /* * * * */
