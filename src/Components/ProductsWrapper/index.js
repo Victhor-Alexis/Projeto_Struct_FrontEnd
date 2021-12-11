@@ -1,25 +1,37 @@
 import React from 'react'
 import { Container } from './styles'
+import { useState, useEffect } from 'react'
+import { api } from '../../services/api'
+import ProductCard from '../ProductCard'
+import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
-const ProductsWrapper = () => {
+const ProductsWrapper = ({user}) => {
+
+    const {refreshFav} = useDynimicityContext()
+    const [favorites, setFavorites] = useState([])
+
+    const fetchFavorites = async () => {
+        while(user.id == undefined){
+            window.setTimeout(100)
+        }
+        const response = await api.get(`user/my_favorites/${user.id}`)
+        setFavorites(response.data)
+    }
+    
+    useEffect(() => {
+        fetchFavorites()
+    }, [refreshFav])
+
     return (
         <Container>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
-            <div className="teste"></div>
+            {favorites.map((favorite, i) => {
+                return(
+                <div>
+                    <ProductCard key={favorite.id} newDimensions={15} product={favorite}/>
+                </div>
+            )})}
+
+    
         </Container>
     )
 }

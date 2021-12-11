@@ -8,6 +8,12 @@ const DynimicityProvider = ({children}) => {
 
      /* Add Favorite */ 
 
+     const [refreshFav, setRefreshFav] = useState(0)
+
+     const refreshFun = () => {
+         setRefreshFav(refreshFav + 1)
+     }
+
      const [sizeFavbar, setSizeFavbar] = useState("0%")
      const [displayFavbar, setDisplayFavbar] = useState("none") 
      const [minWidthFav, setMinWidthFav] = useState("0")
@@ -37,6 +43,8 @@ const DynimicityProvider = ({children}) => {
         const retrieveduser = Cookies.get('padoca.user');
         if(retrieveduser){
             setUser(JSON.parse(retrieveduser))
+            api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
+            api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email
         }
      }, [])
 
@@ -49,6 +57,8 @@ const DynimicityProvider = ({children}) => {
         }).then((response) => {
             setUser(response.data)
             Cookies.set('padoca.user', JSON.stringify(response.data))
+            api.defaults.headers.common['X-User-Token'] = response.data.authentication_token
+            api.defaults.headers.common['X-User-Email'] = response.data.email
             alert("Logged in")
         }).catch((error) => {
             setUser(undefined)
@@ -56,7 +66,7 @@ const DynimicityProvider = ({children}) => {
         })
     }
 
-    const logout = () => {
+    const logout = async (token) => {
         setUser(undefined)
         Cookies.set('padoca.user', null)
     }
@@ -243,11 +253,13 @@ const DynimicityProvider = ({children}) => {
                                             formShow, displayForm, formOpacity, 
                                             mobMenuShow, displayMobMenu, widthMobMenu,
                                             managementOption, optionModel, modelItens,
+                                            login,user,logout,refreshFav, refreshFun,
                                             setOptionCrud, optionCrud,
                                             admFormShow, displayAdmForm,
                                             selectedItemId, formKind, modelForm,
                                             realOptionModel, showAdmSidebar, admSide,
-                                            login, user, logout}}>
+                                            showAdmSidebar, admSide}}>
+
 
             {children}
         </DynimicityContext.Provider>

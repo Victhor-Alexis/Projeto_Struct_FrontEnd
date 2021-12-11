@@ -139,6 +139,12 @@ export const Container = styled.header`
         }
     }
 
+    .buttonAdmin {
+        margin-right: 0.5rem;
+        img {
+            width: 35px;
+        }
+    }
     }
 
 
