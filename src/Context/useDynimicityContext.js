@@ -158,6 +158,7 @@ const DynimicityProvider = ({children}) => {
 
     // AdmForm:
     const [displayAdmForm, setDisplayAdmForm] = useState(["none", 0])
+    const [displayImageForm, setDisplayImageForm] = useState(["none", 0])
     const [optionCrud, setOptionCrud] = useState("");
     const [selectedItemId, setSelectedItemId] = useState(-1);
     const [formKind, setFormKind] = useState(["none", "none"]); // Add/edit e delete
@@ -166,42 +167,62 @@ const DynimicityProvider = ({children}) => {
     // que também é atributo das outras dois models
 
     const admFormShow = (bool, index, optionCrud) => {
-        if (bool === false) {
-            setDisplayAdmForm(["block", 0])
-            setTimeout(() => setDisplayAdmForm(["block", 1]), 5)
+        if(optionCrud === "Imagem"){
+
+            if (bool === false) {
+                setDisplayImageForm(["block", 0])
+                setTimeout(() => setDisplayImageForm(["block", 1]), 5)
+            }
+            else {
+                setDisplayImageForm(["block", 0])
+                setTimeout(() => setDisplayImageForm(["none", 0]), 100)
+            }
+            
+            setSelectedItemId(index)
+            setOptionCrud(optionCrud)
+
+
         }
-        else {
-            setDisplayAdmForm(["block", 0])
-            setTimeout(() => setDisplayAdmForm(["none", 0]), 100)
-        }
-        
-        setSelectedItemId(index)
-        setOptionCrud(optionCrud)
-
-        /* Determinando a quantidade e o nome dos inputs com base na model e na opção do crud escolhida*/
-
-        if (optionCrud === "Adicionar" || optionCrud === "Editar") {
-            setFormKind(["block", "none"])
-        } 
-        else {
-            setFormKind(["none", "block"])
-        }
-
-        switch(optionModel) {
-            case "Produtos":
-                setModelForm(["block", "none", "block"])
-            break;
-
-            case "Usuários":
-                setModelForm(["none", "block", "block"])
-            break;
-
-            default:
-                setModelForm(["none", "none", "none"])
-                // Caso o form seja para as categorias, só aparece o nome
-            break;
+        else{
+            if (bool === false) {
+                setDisplayAdmForm(["block", 0])
+                setTimeout(() => setDisplayAdmForm(["block", 1]), 5)
+            }
+            else {
+                setDisplayAdmForm(["block", 0])
+                setTimeout(() => setDisplayAdmForm(["none", 0]), 100)
+            }
+            
+            setSelectedItemId(index)
+            setOptionCrud(optionCrud)
+    
+            /* Determinando a quantidade e o nome dos inputs com base na model e na opção do crud escolhida*/
+    
+            if (optionCrud === "Adicionar" || optionCrud === "Editar") {
+                setFormKind(["block", "none"])
+            } 
+            else {
+                setFormKind(["none", "block"])
+            }
+    
+            switch(optionModel) {
+                case "Produtos":
+                    setModelForm(["block", "none", "block"])
+                break;
+    
+                case "Usuários":
+                    setModelForm(["none", "block", "block"])
+                break;
+    
+                default:
+                    setModelForm(["none", "none", "none"])
+                    // Caso o form seja para as categorias, só aparece o nome
+                break;
+            }
         }
     }
+
+    
 
     // Hide Sidebar:
     const [admSide, setAdmSide] = useState("inline-block");

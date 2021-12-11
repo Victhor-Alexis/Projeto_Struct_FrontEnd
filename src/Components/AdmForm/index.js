@@ -16,6 +16,7 @@ const AdmForm = () => {
     const [AllCategories, setALLCategories] = useState([])
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
+    const [imageFile, setImageFile] = useState([])
     const [options, setOptions] = useState([])
     const [multiops, setMultiops] = useState([])
 
@@ -102,7 +103,8 @@ const AdmForm = () => {
         }
 
         event.preventDefault();
-        await api.post(`${realOptionModel}/create`, objectParameter).then((response) => alert(name+" criadoo(a)!"))
+        await api.post(`${realOptionModel}/create`, objectParameter).then((response) => alert(name+" criadoo(a)!"));
+        
     }
 
     const updateModel = async (event) => {
@@ -132,13 +134,32 @@ const AdmForm = () => {
         }
 
         event.preventDefault();
+        
         await api.patch(`${realOptionModel}/update/${selectedItemId}`, objectParameter).then((response) => alert(name+" editado(a)!"))
+        
     }
 
     const deleteModel = async (event) => {
         event.preventDefault();
         console.log("entrou em deleteModel" + realOptionModel, selectedItemId)
         await api.delete(`${realOptionModel}/delete/${selectedItemId}`).then((response) => alert(name+" deletado!"))
+    }
+
+    const add_imageFile = async () => {
+        
+        console.log("entrou em add_imageFile")
+
+        try{
+            const formData = new FormData() 
+            formData.append('imageFile[]', imageFile[0])
+            const response = await api.post(`products/add_imageFile/${selectedItemId}`, formData)
+            if(response.data){
+                alert("imagem editada");
+                setImageFile(response.data);
+            }
+        }catch(erro){
+            alert(erro)
+        }
     }
 
     // Existe a opção de fazer um form para cada opção do crud. Ia ficar mais organizado
@@ -188,9 +209,7 @@ const AdmForm = () => {
                     <input type="text"/>
                 </div>
 
-                <div className="inputWrapper" style={{display: modelForm[2]}}>
-                    <h2>Imagem:</h2>
-                </div>
+                
             </div>
 
             <div className="delete" style={{display: formKind[1]}}>
@@ -201,5 +220,6 @@ const AdmForm = () => {
         </Container>
     )
 }
+
 
 export default AdmForm

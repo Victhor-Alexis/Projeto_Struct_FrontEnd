@@ -5,6 +5,7 @@ import UserCard from '../UserCard'
 import ProductCard from '../ProductCard'
 import edit from '../../Assets/edit.png'
 import delete_icon from '../../Assets/delete.png'
+import image_icon from '../../Assets/image_icon.png'
 
 const AdmRenderElements = ({model}) => {
 
@@ -41,6 +42,7 @@ const AdmRenderElements = ({model}) => {
             <div className="produtos" style={{display: whatToRender[1]}}>
                 <Options>
                     <img src={edit} alt="edit" onClick={() => {admFormShow(false, model.id, "Editar");}}/>
+                    <img src={image_icon} alt="edit" onClick={() => {admFormShow(false, model.id, "Imagem");}}/>
                     <img src={delete_icon} alt="delete" onClick={() => {admFormShow(false, model.id, "Deletar");}}/>
                 </Options>
 
