@@ -43,13 +43,10 @@ const FormAccess = () => {
 
     /* * * * */
 
-
-
     const loginUser = (event) => {
         event.preventDefault()
         login(email ,password)
     }
-
 
     return (
         <Container>

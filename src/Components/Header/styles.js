@@ -131,9 +131,11 @@ export const Container = styled.header`
         }
     }
 
-    .buttonLogout{
+    .buttonLogout {
         img {
-            width: 40px;
+            position: relative;
+            top: -3px;
+            width: 30px;
         }
     }
 
