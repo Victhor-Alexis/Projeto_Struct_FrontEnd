@@ -29,7 +29,7 @@ export const Container = styled.div`
 
     .produtoPhoto{
         width: 100%;
-        height: 60%;
+        height: 70%;
     }
 
     p {
@@ -108,7 +108,7 @@ export const Container = styled.div`
     }
 
     @media screen and (max-width: 411px) {
-        width: 80%;
+        width: 85%;
 
         .header {
             padding: 20% 0 0 0;

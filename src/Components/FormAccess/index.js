@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import { Container } from './styles'
+import {api} from '../../services/api'
 
 const FormAccess = () => {
     
@@ -11,13 +12,44 @@ const FormAccess = () => {
     const alterarForm = (formType) => (formType[0] === "block" ? setFormType(["none", "block"]) : setFormType(["block", "none"]))
 
 
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    /* Cadastrar usuário */
+
+    const cadastrarUser = async (event) => {
+        event.preventDefault();
+
+        console.log(name)
+
+        if (name.length != 0 && password.length >= 6 && email.length !=0){
+
+        await api.post('user/create', {
+            user: {
+                name,
+                email,
+                password,
+                is_admin: false
+            }
+        }).then((response) => alert('criado(a)!'))
+        }
+
+        else {
+            alert("atenção: a senha deve ter no mínimo 6 caracteres e os outros campos não podem ser vazios")
+        }
+
+    }
+
+    /* * * * */
+
+
 
     const loginUser = (event) => {
         event.preventDefault()
         login(email ,password)
     }
+
 
     return (
         <Container>
@@ -53,7 +85,7 @@ const FormAccess = () => {
                     </div>
                 </form>
 
-                <form className="cadastrar" style={{display: formType[1]}}>
+                <form className="cadastrar" style={{display: formType[1]}} onSubmit={cadastrarUser}>
 
                     <div className="close">
                         <svg onClick={() => formShow("block")} width="34" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,10 +96,10 @@ const FormAccess = () => {
 
                     <h1>Cadastro</h1>
 
-                    <input type="nome" placeholder="Nome"/>
-                    <input type="email" placeholder="E-mail"/>
-                    <input type="password" placeholder="Senha" autoComplete="on"/>
-                    <input type="submit" value="Entrar"/>
+                    <input type="nome" placeholder="Nome" value={name} onChange={(e) => setName(e.target.value)}/>
+                    <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="password" placeholder="Senha" autoComplete="on" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="submit" value="Cadastrar"/>
 
                     <div className="box-bottom">
                         <div className="button" onClick={() => alterarForm(formType)}>Fazer login</div>

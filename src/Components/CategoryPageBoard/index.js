@@ -6,7 +6,7 @@ const Board = ({products}) => {
     return (
         <Container>
             {products.map((product,key) => (
-                <ProductCard product={product}/>
+                <ProductCard key={key} product={product}/>
             ))}
         </Container>
     )

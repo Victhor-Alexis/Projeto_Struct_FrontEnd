@@ -8,4 +8,11 @@ export const Container = styled.div`
     //border: 1px solid blue; 
     margin: 5rem auto;
     padding-bottom: 8rem;
+    justify-content: space-around;
+
+    /* Media queries */
+
+    @media screen and (max-width: 440px) {
+        width: 100%;
+    }
 `
