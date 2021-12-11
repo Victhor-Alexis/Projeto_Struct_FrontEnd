@@ -7,11 +7,22 @@ import Product from '../Pages/Product'
 import Profile from '../Pages/Profile'
 import AdminPanel from '../Pages/AdminPanel'
 import { useState } from 'react/cjs/react.development'
+import { useDynimicityContext } from '../Context/useDynimicityContext'
 
 const Routes = () => {
     
-    const [isAdmin, setIsAdmin] = useState(true); // Receber isAdmin do banco
+    const {user} = useDynimicityContext()
 
+    let isAdmin = undefined 
+    const determineAdmin = () => {
+        if(user != undefined){
+            if(user.is_admin === true){
+                isAdmin = true
+            }
+        }
+    }
+
+    determineAdmin()
     return (
         <Switch>
             <Route exact path="/testes" component={Test}/>
@@ -19,8 +30,10 @@ const Routes = () => {
             <Route exact path="/category/:id" component={Category}/>
             <Route exact path="/product/:id" component={Product}/>
             <Route exact path="/profile" component={Profile}/>
-
-            {
+            
+            
+            {   
+            
                 isAdmin && 
                 <Route exact path="/AdminPanel" component={AdminPanel}/>
             }

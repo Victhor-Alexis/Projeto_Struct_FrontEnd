@@ -61,6 +61,39 @@ export const Container = styled.div`
                     }
                 }
             }
+        }   
+    }
+
+    @media screen and (max-width: 1440px) {
+        
+        .smoothTransition .header {
+            p {
+                font-size: 24px;
+            }
+
+            .close {
+                
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
         }
     }
+
+    @media screen and (max-width: 1220px) {
+        
+        .smoothTransition .header {
+            p {
+                font-size: 21px;
+            }
+
+            .close {
+                
+                svg {
+                    width: 21px;
+                    height: 21px;
+                }
+            }
+        }
 `

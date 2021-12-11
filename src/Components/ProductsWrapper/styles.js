@@ -6,6 +6,7 @@ export const Container = styled.div`
     display: inline-flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-top: 2rem;
 
     .teste {
         max-width:17rem;

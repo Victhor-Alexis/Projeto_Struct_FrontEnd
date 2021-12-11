@@ -10,14 +10,22 @@ import addfavorite from '../../Assets/addfavorite.png'
 const Sidebar = () => {
 
     const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
-        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, user} = useDynimicityContext();
+        sizeSidebar, displaySidebar, sidebarShow, minWidthSide, 
+        user, refreshFav, refreshFun} = useDynimicityContext();
     
     const [products, setProducts] = useState([])
     const [favorites, setFavorites] = useState([])
 
+    const onDelete = (productId) => {
+        findFavoriteId(productId)
+        refreshFun()
+    }
+
     const fetchFavorites = async () => {
         const response = await api.get(`favorites/index`)
+        .then((response) => {
         setFavorites(response.data)
+    })
     }
 
     const findFavoriteId = (productId) => {
@@ -31,13 +39,11 @@ const Sidebar = () => {
 
     const deleteFavorite = (favoriteId) => {
         api.delete(`favorites/delete/${favoriteId}`)
-        fetchProducts()
     }
 
     const fetchProducts = async () => {
-        setProducts([])
         const response = await api.get(`user/my_favorites/${user.id}`)
-        setProducts(products => [...products, response.data])
+        setProducts(response.data)
     }
         
 
@@ -49,18 +55,20 @@ const Sidebar = () => {
 
     useEffect(() => {
         if(user != undefined){
-            fetchProducts()
             fetchFavorites()}
-    }, [sizeSidebar])
+    }, [sizeSidebar, refreshFav])
+
+    useEffect(() => {
+        if(user != undefined){
+            fetchProducts()}
+    }, [sizeSidebar, favorites])
+
 
     return (
         <Container>
             <div className="smoothTransition" style={{width: sizeSidebar, minWidth:minWidthSide}}>
                 <div className="wrapper" style={{display: displaySidebar}}>
                     <div className="header">
-                        
-                        <button onClick={() => console.log(user)}>ver user</button>
-                        <button onClick={() => console.log(products)}>products</button>
                         <p>Adicionar aos favoritos</p>
 
                         <div className="close" onClick={() => {
@@ -73,12 +81,13 @@ const Sidebar = () => {
                             </svg>
                         </div>
                     </div>
-                
+                            
+                    {user?
                     <div className="logado" style={{display: "flex"}}>
                         
                         {products.map(product => (
                             <div className='card-completo'>
-                                <div className='delete-button' onClick={() => findFavoriteId(product.id)}>
+                                <div className='delete-button' onClick={() => onDelete(product.id)}>
                                     <img className="icon" src={deleteButton} alt="delete"></img>
                                 </div>
                                  <ProductCard newDimensions={7} product={product}/>
@@ -89,13 +98,13 @@ const Sidebar = () => {
                             <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>
                     </div>
-                    
-                    <div className="deslogado" style={{display: "none"}}>
+                    :
+                    <div className="deslogado" >
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
-                    
+                    }
 
                 </div>
             </div>
