@@ -43,8 +43,8 @@ const DynimicityProvider = ({children}) => {
         const retrieveduser = Cookies.get('padoca.user');
         if(retrieveduser){
             setUser(JSON.parse(retrieveduser))
-            api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
-            api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email
+            // api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
+            // api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email
         }
      }, [])
 
