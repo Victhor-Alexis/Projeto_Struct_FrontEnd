@@ -15,17 +15,19 @@ const Favbar = () => {
     const [allProducts, setAllProducts] = useState([])
 
 
-    const onAdd = async (productId) => {
-        await addFavorite(productId)
-        .then(() =>{refreshFun()})
+    const onAdd = (productId) => {
+         addFavorite(productId)
     }
     const addFavorite = async (productId) => {
-        console.log(productId, user.id)
+        console.log("antes do favorites create")
         await api.post('favorites/create',{
                 user_id: user.id,
                 product_id: productId
-        }).then(() =>{  
-        defineNonFavorited()
+        }).then(() =>{
+        console.log('depois do favorites create')  
+        alert("Favorite adicionado")
+        refreshFun()
+        console.log('depois do refresh fun')
         }).catch((event) => console.log('Error uploading favorite'))
     }
 
@@ -47,18 +49,20 @@ const Favbar = () => {
     useEffect(() => {
         if(user != undefined){
             fetchProducts()
-            fetchAllProducts()
-            defineNonFavorited()}
+            fetchAllProducts()}
     }, [sizeFavbar,refreshFav, sizeSidebar])
+
+
+    useEffect(() => {
+        if(user != undefined){
+            defineNonFavorited()}
+    }, [products])
 
     return (
         <Container>
             <div className="smoothTransition" style={{width: sizeFavbar, minWidth:minWidthFav}}>
                 <div className="wrapper" style={{display: displayFavbar}}>
                     <div className="header">
-                        <button onClick={() => console.log(notfavorited)}>not favorited</button>
-                        <button onClick={() => console.log(allProducts)}>All products</button>
-                        <button onClick={() => console.log(products)}>Favorite products</button>
                         <p>Escolha o favorito</p>
 
                         <div className="close" onClick={() => {

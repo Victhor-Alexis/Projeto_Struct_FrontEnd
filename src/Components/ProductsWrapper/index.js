@@ -5,13 +5,15 @@ import { api } from '../../services/api'
 import ProductCard from '../ProductCard'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 
-const ProductsWrapper = () => {
+const ProductsWrapper = ({user}) => {
 
-    const {refreshFav, user} = useDynimicityContext()
+    const {refreshFav} = useDynimicityContext()
     const [favorites, setFavorites] = useState([])
-    
+
     const fetchFavorites = async () => {
-        setFavorites([])
+        while(user.id == undefined){
+            window.setTimeout(100)
+        }
         const response = await api.get(`user/my_favorites/${user.id}`)
         setFavorites(response.data)
     }
@@ -23,7 +25,6 @@ const ProductsWrapper = () => {
     return (
         <Container>
             {favorites.map((favorite, i) => {
-                console.log(favorites)
                 return(
                 <div>
                     <ProductCard key={favorite.id} newDimensions={15} product={favorite}/>

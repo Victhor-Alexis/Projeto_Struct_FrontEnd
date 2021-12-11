@@ -23,7 +23,9 @@ const Sidebar = () => {
 
     const fetchFavorites = async () => {
         const response = await api.get(`favorites/index`)
-        .then((response) => setFavorites(response.data))
+        .then((response) => {
+        setFavorites(response.data)
+    })
     }
 
     const findFavoriteId = (productId) => {
@@ -53,18 +55,20 @@ const Sidebar = () => {
 
     useEffect(() => {
         if(user != undefined){
-            fetchProducts()
             fetchFavorites()}
     }, [sizeSidebar, refreshFav])
+
+    useEffect(() => {
+        if(user != undefined){
+            fetchProducts()}
+    }, [sizeSidebar, favorites])
+
 
     return (
         <Container>
             <div className="smoothTransition" style={{width: sizeSidebar, minWidth:minWidthSide}}>
                 <div className="wrapper" style={{display: displaySidebar}}>
                     <div className="header">
-                        
-                        <button onClick={() => console.log(user)}>ver user</button>
-                        <button onClick={() => console.log(products)}>products</button>
                         <p>Adicionar aos favoritos</p>
 
                         <div className="close" onClick={() => {
@@ -77,7 +81,8 @@ const Sidebar = () => {
                             </svg>
                         </div>
                     </div>
-                
+                            
+                    {user?
                     <div className="logado" style={{display: "flex"}}>
                         
                         {products.map(product => (
@@ -93,13 +98,13 @@ const Sidebar = () => {
                             <img className="add-icon" src={addfavorite} alt="adicionar favorito"></img>
                          </div>
                     </div>
-                    
-                    <div className="deslogado" style={{display: "none"}}>
+                    :
+                    <div className="deslogado" >
                         <div className="boxAlert">
                             <p>Logue-se para poder adicionar seus pratos favoritos!</p>
                         </div>
                     </div>
-                    
+                    }
 
                 </div>
             </div>

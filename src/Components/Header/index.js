@@ -9,6 +9,7 @@ import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
 import { useHistory } from 'react-router'
 import logoutImg from '../../Assets/exit.png'
+import adminIcon from '../../Assets/adminIcon.png'
 
 const Header = ({background, fontColor, position, bottom, profileBlack, 
                  hoverEffect, topSubmenu, colorSubmenu}) => {
@@ -29,6 +30,36 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         setCategories(response.data)
         
     }
+
+    const isUserAdmin = () => {
+        if(user){
+            if(user.is_admin){
+                return(
+                    <div>
+                        <div className="buttonAdmin" onClick={() => history.push(`/AdminPanel`)}>
+                            <img src={adminIcon} alt="admin"></img>
+                        </div> 
+                        <div className="buttonProfile" onClick={() => history.push(`/profile`)}>
+                            <img src={realProfileIcon} alt="profile_access"></img>
+                        </div> 
+                    </div>
+                )
+            }
+            return (
+                <div className="buttonProfile" onClick={() => history.push(`/profile`)}>
+                    <img src={realProfileIcon} alt="profile_access"></img>
+                </div> 
+            )
+        }else{
+            return(
+                <div className="buttonProfile" onClick={() => formShow("none")}>
+                        <img src={realProfileIcon} alt="profile_access"></img>
+                </div>
+            )
+        }
+}
+
+
 
     useEffect(() => {
         fetchCategories()
@@ -66,7 +97,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
             </nav>
 
             <div className="logo">
-                <h1 style={{color: fontColor}}>Padoca</h1>
+                <h1 onClick={() => history.push(`/`)} style={{color: fontColor}}>Padoca</h1>
             </div>
             
             <nav className="desktop-menu">
@@ -91,15 +122,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
             </nav>
 
             <div className="groupRight">
-                {user?
-                <div className="buttonProfile" onClick={() => history.push(`/profile`)}>
-                    <img src={realProfileIcon} alt="profile_access"></img>
-                </div> 
-                :
-                <div className="buttonProfile" onClick={() => formShow("none")}>
-                    <img src={realProfileIcon} alt="profile_access"></img>
-                </div>}
-
+                {isUserAdmin()}
                 <div className="buttonFavorites" onClick={() => sidebarShow("0%")}>
                     <img src={favorites} alt="favorites_access"></img>
                 </div>
