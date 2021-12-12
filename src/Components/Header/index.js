@@ -59,7 +59,10 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         }
 }
 
-
+    const logoutHome = () =>{
+        history.push(`/`)
+        logout()
+    }
 
     useEffect(() => {
         fetchCategories()
@@ -128,7 +131,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
                 </div>
                 
                 {user?
-                <div className="buttonLogout" onClick={() => logout()}>
+                <div className="buttonLogout" onClick={() => logoutHome()}>
                     <img src={logoutImg} alt="logout"></img>
                 </div>
                 :
