@@ -179,6 +179,8 @@ const DynimicityProvider = ({children}) => {
     const admFormShow = (bool, index, optionCrud) => {
         if(optionCrud === "Imagem"){
 
+            console.log("entrou")
+
             if (bool === false) {
                 setDisplayImageForm(["block", 0])
                 setTimeout(() => setDisplayImageForm(["block", 1]), 5)
@@ -258,7 +260,7 @@ const DynimicityProvider = ({children}) => {
                                             admFormShow, displayAdmForm,
                                             selectedItemId, formKind, modelForm,
                                             realOptionModel, showAdmSidebar, admSide,
-                                            showAdmSidebar, admSide}}>
+                                            showAdmSidebar, admSide, displayImageForm}}>
 
 
             {children}

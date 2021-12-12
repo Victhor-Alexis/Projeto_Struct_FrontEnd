@@ -16,7 +16,6 @@ const AdmForm = () => {
     const [AllCategories, setALLCategories] = useState([])
     const [description, setDescription] = useState("")
     const [image, setImage] = useState("")
-    const [imageFile, setImageFile] = useState([])
     const [options, setOptions] = useState([])
     const [multiops, setMultiops] = useState([])
 
@@ -145,22 +144,7 @@ const AdmForm = () => {
         await api.delete(`${realOptionModel}/delete/${selectedItemId}`).then((response) => alert(name+" deletado!"))
     }
 
-    const add_imageFile = async () => {
-        
-        console.log("entrou em add_imageFile")
-
-        try{
-            const formData = new FormData() 
-            formData.append('imageFile[]', imageFile[0])
-            const response = await api.post(`products/add_imageFile/${selectedItemId}`, formData)
-            if(response.data){
-                alert("imagem editada");
-                setImageFile(response.data);
-            }
-        }catch(erro){
-            alert(erro)
-        }
-    }
+    
 
     // Existe a opção de fazer um form para cada opção do crud. Ia ficar mais organizado
     // que a forma que fiz aqui, mas teria mais componentes e trechos repetidos.
@@ -208,8 +192,6 @@ const AdmForm = () => {
                     <h2>Email:</h2>
                     <input type="text"/>
                 </div>
-
-                
             </div>
 
             <div className="delete" style={{display: formKind[1]}}>

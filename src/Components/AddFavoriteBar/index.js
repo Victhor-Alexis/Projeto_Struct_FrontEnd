@@ -21,8 +21,11 @@ const Favbar = () => {
     const addFavorite = async (productId) => {
         console.log("antes do favorites create")
         await api.post('favorites/create',{
+            favorite:{
                 user_id: user.id,
                 product_id: productId
+            }
+                
         }).then(() =>{
         console.log('depois do favorites create')  
         alert("Favorite adicionado")
