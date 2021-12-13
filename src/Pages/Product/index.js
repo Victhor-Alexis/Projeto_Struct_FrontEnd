@@ -30,6 +30,7 @@ const Product = () => {
         <>
             <ProductShow product={product}/>
             <Sidebar/>
+            <Favbar/>
             <FormAccess/>
             <Header background="none" color="#161616" profileBlack={profile_black}
                     position="absolute" bottom="0rem" fontColor="#161616"
