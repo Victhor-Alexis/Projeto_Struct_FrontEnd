@@ -9,6 +9,7 @@ import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
 import { useParams } from "react-router"
+import Favbar from '../../Components/AddFavoriteBar'
 
 const Product = () => {
 
@@ -30,6 +31,7 @@ const Product = () => {
         <>
             <ProductShow product={product}/>
             <Sidebar/>
+            <Favbar/>
             <FormAccess/>
             <Header background="none" color="#161616" profileBlack={profile_black}
                     position="absolute" bottom="0rem" fontColor="#161616"

@@ -35,8 +35,10 @@ const Favbar = () => {
     }
 
     const fetchProducts = async () => {
+        if(user !== null){
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
+    }
     
     const fetchAllProducts = async () => {
         const response = await api.get(`products/index`)
