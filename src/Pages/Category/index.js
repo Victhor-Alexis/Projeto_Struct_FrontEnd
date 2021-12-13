@@ -8,6 +8,7 @@ import FormAccess from "../../Components/FormAccess"
 import profile_black from '../../Assets/profile_black.png'
 import MobileMenu from '../../Components/MobileMenu'
 import Board from "../../Components/CategoryPageBoard"
+import Favbar from '../../Components/AddFavoriteBar'
 
 const Category = () => {
 
@@ -36,6 +37,7 @@ const Category = () => {
                     hoverEffect="newHover" topSubmenu="-18rem" colorSubmenu="rgba(249,246,240,0.9)"/>
             <MobileMenu/>
             <Sidebar/>
+            <Favbar/>
             <FormAccess/>
 
         </>
