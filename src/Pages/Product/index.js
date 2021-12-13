@@ -9,6 +9,7 @@ import { useState } from "react"
 import { useEffect } from "react/cjs/react.development"
 import { api } from "../../services/api"
 import { useParams } from "react-router"
+import Favbar from '../../Components/AddFavoriteBar'
 
 const Product = () => {
 
