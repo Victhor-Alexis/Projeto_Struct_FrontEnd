@@ -20,17 +20,22 @@ const Favbar = () => {
     }
     const addFavorite = async (productId) => {
         await api.post('favorites/create',{
+            favorite:{
                 user_id: user.id,
                 product_id: productId
-        }).then(() =>{ 
+            }
+                
+        }).then(() =>{
         alert("Favorite adicionado")
         refreshFun()
         }).catch((event) => console.log('Error uploading favorite'))
     }
 
     const fetchProducts = async () => {
+        if(user !== null){
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
+    }
     
     const fetchAllProducts = async () => {
         const response = await api.get(`products/index`)
@@ -44,14 +49,14 @@ const Favbar = () => {
     }
 
     useEffect(() => {
-        if(user != undefined){
+        if(user !== undefined){
             fetchProducts()
             fetchAllProducts()}
     }, [sizeFavbar,refreshFav, sizeSidebar])
 
 
     useEffect(() => {
-        if(user != undefined){
+        if(user !== undefined){
             defineNonFavorited()}
     }, [products])
 

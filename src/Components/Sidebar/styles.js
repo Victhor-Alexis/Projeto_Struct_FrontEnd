@@ -42,6 +42,7 @@ export const Container = styled.div`
             .boxAlert {
                 width: 80%;
                 height: 12vw;
+                min-height: 9rem;
                 min-width: 17rem;
                 max-height: 15.25rem;
                 border: 2px dashed #161616;

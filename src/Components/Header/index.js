@@ -31,6 +31,11 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         
     }
 
+    const logoutHome = () => {
+        history.push("/");
+        logout();
+    }
+
     const isUserAdmin = () => {
         if(user){
             if(user.is_admin){

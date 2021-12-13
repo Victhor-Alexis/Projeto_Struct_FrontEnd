@@ -23,7 +23,7 @@ const AdmRenderElements = ({model}) => {
         }
 
         determiningWhatToRender()
-    }, [optionModel]) 
+    }, [optionModel, ]) 
     // Atualiza Quais elementos devem ser mostrados com base na mudança da opção da model
     
     // Não esquecer de tranformar Options em componente

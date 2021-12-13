@@ -155,7 +155,7 @@ export const Container = styled.div`
         }
     }
 
-    @media screen and (max-height: 880px) {
+    @media screen and (max-height: 1000px) {
         .wrapper {
             form {
                 h1 {
@@ -191,7 +191,7 @@ export const Container = styled.div`
         }
     }
 
-    @media screen and (max-height: 750px) {
+    @media screen and (max-height: 850px) {
         .wrapper {
             form {
                 h1 {
