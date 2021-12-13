@@ -19,7 +19,6 @@ const Favbar = () => {
          addFavorite(productId)
     }
     const addFavorite = async (productId) => {
-        console.log("antes do favorites create")
         await api.post('favorites/create',{
             favorite:{
                 user_id: user.id,
@@ -27,10 +26,8 @@ const Favbar = () => {
             }
                 
         }).then(() =>{
-        console.log('depois do favorites create')  
         alert("Favorite adicionado")
         refreshFun()
-        console.log('depois do refresh fun')
         }).catch((event) => console.log('Error uploading favorite'))
     }
 

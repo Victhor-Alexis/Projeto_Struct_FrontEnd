@@ -64,7 +64,10 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         }
 }
 
-
+    const logoutHome = () =>{
+        history.push(`/`)
+        logout()
+    }
 
     useEffect(() => {
         fetchCategories()
