@@ -43,8 +43,13 @@ const DynimicityProvider = ({children}) => {
         const retrieveduser = Cookies.get('padoca.user');
         if(retrieveduser){
             setUser(JSON.parse(retrieveduser))
-            api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
-            api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email
+
+            if(JSON.parse(retrieveduser) !== null)
+            {
+                api.defaults.headers.common['X-User-Token'] = JSON.parse(retrieveduser).authentication_token
+                api.defaults.headers.common['X-User-Email'] = JSON.parse(retrieveduser).email 
+            }
+            
         }
      }, [])
 
@@ -147,8 +152,10 @@ const DynimicityProvider = ({children}) => {
     const managementOption = (optionModel) => {
         let realOptionModel;
         setOptionModel(optionModel)
+
         
         switch(optionModel) {
+
             case "Produtos":
                 realOptionModel = "products"
             break;
@@ -158,7 +165,7 @@ const DynimicityProvider = ({children}) => {
             break;
 
             default:
-                realOptionModel = "user"
+                realOptionModel = "products"
             break;
         }
 

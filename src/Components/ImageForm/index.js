@@ -10,8 +10,8 @@ import { api } from '../../services/api';
 
 const  ImageForm = () => {
 
-    const {optionCrud, optionModel, displayAdmForm, admFormShow, 
-        selectedItemId, modelForm, formKind, realOptionModel,
+    const {admFormShow, 
+        selectedItemId,
         managementOption, displayImageForm} = useDynimicityContext();
 
     const [imageFile, setImageFile] = useState([]);
@@ -42,7 +42,7 @@ const  ImageForm = () => {
 
     return (
         <Container onSubmit={add_imageFile} style ={{display: displayImageForm[0], opacity: displayImageForm[1]}}>
-             <div className="close" onClick={() => {admFormShow(true, -1, "Imagem"); }}>
+             <div className="close" onClick={() => {admFormShow(true, -1, "Imagem"); managementOption("Produtos")}}>
                 <svg width="36" height="34" viewBox="0 0 36 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <line x1="2.70711" y1="1.29289" x2="34.7071" y2="33.2929" stroke="#161616" strokeWidth="2"/>
                     <line x1="1.29289" y1="33.2929" x2="33.2929" y2="1.29289" stroke="#161616" strokeWidth="2"/>

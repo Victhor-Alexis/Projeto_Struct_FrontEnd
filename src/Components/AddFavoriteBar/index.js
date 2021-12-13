@@ -50,14 +50,14 @@ const Favbar = () => {
     }
 
     useEffect(() => {
-        if(user != undefined){
+        if(user !== undefined){
             fetchProducts()
             fetchAllProducts()}
     }, [sizeFavbar,refreshFav, sizeSidebar])
 
 
     useEffect(() => {
-        if(user != undefined){
+        if(user !== undefined){
             defineNonFavorited()}
     }, [products])
 

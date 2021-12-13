@@ -1,7 +1,6 @@
 import { Container } from './styles';
 import {useDynimicityContext} from '../../Context/useDynimicityContext';
 import ProductCard from "../ProductCard";
-import { useLoginContext } from '../../Context/useLoginContext';
 import { useState, useEffect } from 'react';
 import {api} from '../../services/api';
 import deleteButton from '../../Assets/deleteButton.png'
@@ -9,7 +8,7 @@ import addfavorite from '../../Assets/addfavorite.png'
 
 const Sidebar = () => {
 
-    const {favbarShow, sizeFavbar, displayFavbar, minWidthFav,
+    const {favbarShow,
         sizeSidebar, displaySidebar, sidebarShow, minWidthSide, 
         user, refreshFav, refreshFun} = useDynimicityContext();
     

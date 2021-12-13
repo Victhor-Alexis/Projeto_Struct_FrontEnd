@@ -22,9 +22,18 @@ export const Container = styled.div`
             font-weight: normal;
         }
 
+        .Price{
+            font-family: 'Roboto';
+            font-size: 21px;
+            margin-top: 0.7rem;
+        }
+
         img {
             width: 42px;
+            cursor: pointer;
         }
+
+
     }
 
     .produtoPhoto{
@@ -82,6 +91,10 @@ export const Container = styled.div`
 
             h1 {
                 font-size: 24px;
+            }
+
+            .Price{
+                margin-top: 0px;
             }
 
             img {

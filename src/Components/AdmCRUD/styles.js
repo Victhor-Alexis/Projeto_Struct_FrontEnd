@@ -9,7 +9,7 @@ export const Container = styled.div`
     left: 30%;
     top: 17%;
     padding-bottom: 10%;
-    display: ${props => props.ju != "" ? "block" : "none"};
+    display: ${props => props.ju !== "" ? "block" : "none"};
 
     h1 {
         width: 100%;
