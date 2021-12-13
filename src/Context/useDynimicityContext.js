@@ -36,7 +36,6 @@ const DynimicityProvider = ({children}) => {
 
 
     /* UserCRUD */
-
     const [user, setUser] = useState(undefined)
 
      useEffect(() =>{
@@ -74,6 +73,8 @@ const DynimicityProvider = ({children}) => {
     const logout = async (token) => {
         setUser(undefined)
         Cookies.set('padoca.user', null)
+        api.defaults.headers.common['X-User-Token'] = null
+        api.defaults.headers.common['X-User-Email'] = null
     }
     
     /* Sidebar */
@@ -130,8 +131,8 @@ const DynimicityProvider = ({children}) => {
             setDisplayMobMenu("block")
             setTimeout( () => setWidthMobMenu("100%"), 1)
         } else {
-            setDisplayMobMenu("none")
-            setTimeout( () => setWidthMobMenu("0%"), 1)
+            setWidthMobMenu("0%")
+            setTimeout( () => {setDisplayMobMenu("none")}, 200)
         }
     }
 

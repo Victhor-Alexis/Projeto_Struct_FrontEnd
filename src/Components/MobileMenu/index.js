@@ -2,10 +2,33 @@ import { Link } from "react-router-dom"
 import { Container } from "./styles"
 import icon_categoria from '../../Assets/icon_categoria.png'
 import { useDynimicityContext } from "../../Context/useDynimicityContext"
+import { useEffect, useState } from "react"
+import { api } from '../../services/api'
+import { useHistory } from "react-router"
 
 const MobileMenu = () => {
 
-    const {mobMenuShow, displayMobMenu, widthMobMenu} = useDynimicityContext()
+    const capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    const {mobMenuShow, displayMobMenu, widthMobMenu, user} = useDynimicityContext()
+
+    const [categories, setCategories] = useState([])
+
+    const history = useHistory()
+
+    const fetchCategories = async () => {
+        const response = await api.get('categories/index')
+        setCategories(response.data) 
+    }
+
+    const goToCategory = () => {
+    }
+
+    useEffect(() => {
+        fetchCategories()
+    }, [])
 
     return (
         <Container style={{display: displayMobMenu, width: widthMobMenu}}>
@@ -33,25 +56,13 @@ const MobileMenu = () => {
                 </li>
 
                 <ul className="subMenu">
-                <li>
-                            <Link to='/'>CategoriaAAAAA</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
-
-                        <li>
-                            <Link to='/'>Categoria</Link>
-                            <img src={icon_categoria} alt="categoria_icon"></img>
-                        </li>
+                    {categories.map((category,key) => (
+                                <li key={key}>
+                                    <Link to={`/category/${category.id}`}
+                                        onClick={() => {mobMenuShow("block")}}>{capitalizeFirstLetter(category.name)}</Link>
+                                    <img src={icon_categoria} alt="categoria_icon"></img>
+                                </li>
+                    ))}
                 </ul>             
 
                 <li><Link to="/">Sobre</Link></li>

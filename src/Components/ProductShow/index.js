@@ -30,12 +30,16 @@ function ProductShow({product}) {
             <div className="header">
                 <h1>{product.name}</h1>
 
+                {user? 
                 <div className="addFavorites">
                     <img src={favorites} alt="add_favorites_button" onClick={(event) => {
                         addFavorite(product.id);
                      }
                     }></img>
                 </div>
+                :
+                null 
+                }
 
                 <h1 className="Price">R$ {product.price}</h1>
             </div>

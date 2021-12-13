@@ -20,6 +20,7 @@ export const Container = styled.header`
             font-size: 42px;
             font-weight: normal;
             color: white;
+            cursor: pointer;
         }
     }
 
@@ -121,7 +122,7 @@ export const Container = styled.header`
         div {
             cursor: pointer;
             display: inline-block;
-            margin: 0 0.8rem;
+            margin: 0 0.8rem 0 0.3rem;
         }
     }
 
@@ -135,7 +136,7 @@ export const Container = styled.header`
         img {
             position: relative;
             top: -3px;
-            width: 30px;
+            width: 34px;
         }
     }
 
@@ -207,10 +208,18 @@ export const Container = styled.header`
 
             .buttonLogout {
                 img {
-                    width: 28px;
+                    position: relative;
+                    top: 0.05rem;
+                    width: 24px;
                 }
             }
             .buttonProfile {
+                img {
+                    width: 24px;
+                }
+            }
+            
+            .buttonAdmin {
                 img {
                     width: 24px;
                 }

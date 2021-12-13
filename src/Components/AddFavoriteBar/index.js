@@ -35,9 +35,10 @@ const Favbar = () => {
     }
 
     const fetchProducts = async () => {
+        if(user != undefined){
         const response = await api.get(`user/my_favorites/${user.id}`)
         setProducts(response.data)}
-    
+        }
     const fetchAllProducts = async () => {
         const response = await api.get(`products/index`)
         setAllProducts(response.data)
@@ -50,7 +51,7 @@ const Favbar = () => {
     }
 
     useEffect(() => {
-        if(user !== undefined){
+        if(user != undefined){
             fetchProducts()
             fetchAllProducts()}
     }, [sizeFavbar,refreshFav, sizeSidebar])

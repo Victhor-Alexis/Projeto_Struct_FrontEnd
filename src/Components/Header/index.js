@@ -40,14 +40,14 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
         if(user){
             if(user.is_admin){
                 return(
-                    <div>
+                    <>
                         <div className="buttonAdmin" onClick={() => history.push(`/AdminPanel`)}>
                             <img src={adminIcon} alt="admin"></img>
                         </div> 
                         <div className="buttonProfile" onClick={() => history.push(`/profile`)}>
                             <img src={realProfileIcon} alt="profile_access"></img>
                         </div> 
-                    </div>
+                    </>
                 )
             }
             return (

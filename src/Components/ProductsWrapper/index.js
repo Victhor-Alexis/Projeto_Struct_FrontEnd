@@ -11,15 +11,14 @@ const ProductsWrapper = ({user}) => {
     const [favorites, setFavorites] = useState([])
 
     const fetchFavorites = async () => {
-        while(user.id == undefined){
-            window.setTimeout(100)
-        }
         const response = await api.get(`user/my_favorites/${user.id}`)
         setFavorites(response.data)
     }
     
     useEffect(() => {
+        if( user != undefined){
         fetchFavorites()
+        }
     }, [refreshFav])
 
     return (
