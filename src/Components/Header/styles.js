@@ -146,7 +146,6 @@ export const Container = styled.header`
             width: 35px;
         }
     }
-    }
 
 
     /* * * * Media Queries * * * */

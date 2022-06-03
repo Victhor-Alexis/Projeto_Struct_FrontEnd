@@ -4,7 +4,7 @@ import banner from '../../Assets/banner1920x1080.jpg'
 export const Container = styled.div`
     width: 100%;
     height: 100%;
-    //background-image: url(${banner});
+    background-image: url(${banner});
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
