@@ -67,7 +67,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
 
 
     useEffect(() => {
-        fetchCategories()
+        //fetchCategories()
     }, [])
 
     /* 
