@@ -1,12 +1,11 @@
 import React from 'react'
-import Banner from '../../Components/Banner'
+import Banner2 from '../../Components/Banner2'
 import Header from '../../Components/Header'
 import Footer from '../../Components/Footer'
 import Sidebar from '../../Components/Sidebar'
 import FormAccess from '../../Components/FormAccess'
 import MobileMenu from '../../Components/MobileMenu'
 import Favbar from '../../Components/AddFavoriteBar'
-import { useLoginContext } from '../../Context/useLoginContext'
 
 const Home = () => {
 
@@ -14,7 +13,7 @@ const Home = () => {
         <>
             <Header/>
             <MobileMenu/>
-            <Banner/>
+            <Banner2/>
             <Footer/>
             
             <Sidebar/>
