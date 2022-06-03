@@ -4,8 +4,7 @@ import profile_icon from '../../Assets/profile_header.png'
 import favorites from '../../Assets/fav.png'
 import { useDynimicityContext } from '../../Context/useDynimicityContext'
 import icon_categoria from '../../Assets/icon_categoria.png'
-import { useState } from "react"
-import { useEffect } from "react/cjs/react.development"
+import { useState, useEffect } from "react"
 import { api } from "../../services/api"
 import { useHistory } from 'react-router'
 import logoutImg from '../../Assets/exit.png'
@@ -67,7 +66,7 @@ const Header = ({background, fontColor, position, bottom, profileBlack,
 
 
     useEffect(() => {
-        //fetchCategories()
+        fetchCategories()
     }, [])
 
     /* 
