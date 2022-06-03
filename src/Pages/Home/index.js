@@ -1,5 +1,5 @@
 import React from 'react'
-import Banner2 from '../../Components/Banner2'
+import Banner from '../../Components/Banner'
 import Header from '../../Components/Header'
 import Footer from '../../Components/Footer'
 import Sidebar from '../../Components/Sidebar'
@@ -11,8 +11,8 @@ const Home = () => {
 
     return (
         <>
+            <Banner/>
             <Header/>
-            <Banner2/>
             <MobileMenu/>
             <Footer/>
             
