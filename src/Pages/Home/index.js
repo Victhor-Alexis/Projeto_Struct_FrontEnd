@@ -11,8 +11,8 @@ const Home = () => {
 
     return (
         <>
-            <Banner2/>
             <Header/>
+            <Banner2/>
             <MobileMenu/>
             <Footer/>
             
