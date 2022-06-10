@@ -44,7 +44,7 @@ function ProductShow({product}) {
                 <h1 className="Price">R$ {product.price}</h1>
             </div>
 
-            <img src={`http://164.92.71.164${product.image_url}`} className="produtoPhoto" alt="A foto atrelada ao produto"/>
+            <img src={`https://padoca.ml${product.image_url}`} className="produtoPhoto" alt="A foto atrelada ao produto"/>
 
             <p>{product.description}</p>
         </Container>
