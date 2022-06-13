@@ -12,6 +12,7 @@ export const Container = styled.div`
         transition: 0.35s;
 
         form {
+            min-width: 20rem;
             position: relative;
             background-color: rgb(249, 246, 240);
             top: 48%;
